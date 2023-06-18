@@ -1,4 +1,4 @@
-package com.luchavor.neo4jbatch;
+package com.luchavor.batchprocess;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;

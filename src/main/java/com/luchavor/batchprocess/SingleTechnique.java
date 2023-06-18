@@ -1,4 +1,4 @@
-package com.luchavor.neo4jbatch;
+package com.luchavor.batchprocess;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

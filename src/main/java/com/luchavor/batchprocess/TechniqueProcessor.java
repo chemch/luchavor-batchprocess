@@ -1,4 +1,4 @@
-package com.luchavor.neo4jbatch;
+package com.luchavor.batchprocess;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
