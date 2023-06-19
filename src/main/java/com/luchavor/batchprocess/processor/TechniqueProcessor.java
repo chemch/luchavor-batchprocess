@@ -13,18 +13,8 @@ public class TechniqueProcessor implements ItemProcessor<SingleTechnique, Single
 
 	private static final Logger log = LoggerFactory.getLogger(TechniqueProcessor.class);
 	
-	@Autowired
-	RestTemplate restTemplate;
-
 	@Override
-	public SingleTechnique process(final SingleTechnique technique) throws Exception {
-		// post to create 
-		ResponseEntity<String> response = restTemplate.postForEntity("http://localhost:7000/single-technique", technique, String.class);
-		
-		// check status code (should be 201)
-		if(!response.getStatusCode().is2xxSuccessful())
-			log.error(response.getBody());
-		
+	public SingleTechnique process(final SingleTechnique technique) throws Exception {		
 		// return same object
 		return technique;
 	}

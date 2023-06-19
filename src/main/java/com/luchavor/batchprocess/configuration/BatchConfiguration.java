@@ -18,7 +18,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.luchavor.batchprocess.model.SingleTechnique;
 import com.luchavor.batchprocess.processor.TechniqueProcessor;
-import com.luchavor.batchprocess.writer.NoOpItemWriter;
+import com.luchavor.batchprocess.writer.RestCallWriter;
 
 @Configuration
 public class BatchConfiguration {
@@ -41,9 +41,9 @@ public class BatchConfiguration {
 			.build();
 	}
 	
-	@Bean 
-	NoOpItemWriter<SingleTechnique> writer() {
-		return new NoOpItemWriter<SingleTechnique>();
+	@Bean
+	RestCallWriter<SingleTechnique> writer() {
+		return new RestCallWriter<SingleTechnique>();
 	}
 
 	@Bean
