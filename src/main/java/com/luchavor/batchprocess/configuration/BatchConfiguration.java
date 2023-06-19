@@ -15,10 +15,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.web.client.RestTemplate;
-
-import com.luchavor.batchprocess.model.SingleTechnique;
+import com.luchavor.batchprocess.model.Technique;
+import com.luchavor.batchprocess.model.TechniqueType;
 import com.luchavor.batchprocess.processor.TechniqueProcessor;
-import com.luchavor.batchprocess.writer.RestCallWriter;
+import com.luchavor.batchprocess.writer.RestApiWriter;
 
 @Configuration
 public class BatchConfiguration {
@@ -30,45 +30,55 @@ public class BatchConfiguration {
 
 	// tag::readerwriterprocessor[]
 	@Bean
-	FlatFileItemReader<SingleTechnique> reader() {
-		return new FlatFileItemReaderBuilder<SingleTechnique>()
+	FlatFileItemReader<Technique> reader() {
+		return new FlatFileItemReaderBuilder<Technique>()
 			.name("techniqueReader")
 			.resource(new ClassPathResource("technique-data.csv"))
 			.delimited()
-			.names(new String[]{"matrixType", "mitreId", "tactic", "name", "description", "parentMitreId", "level"})
-			.fieldSetMapper(new BeanWrapperFieldSetMapper<SingleTechnique>() {{ setTargetType(SingleTechnique.class); }})
+			.names(new String[]{"model", "mitreId", "tactic", "name", "description", "parentMitreId", "treeLevel", "type"})
+			.fieldSetMapper(new BeanWrapperFieldSetMapper<Technique>() {{ setTargetType(Technique.class); }})
 			.linesToSkip(1) // skip top line which has headers
 			.build();
 	}
 	
 	@Bean
-	RestCallWriter<SingleTechnique> writer() {
-		return new RestCallWriter<SingleTechnique>();
+	RestApiWriter<Technique> techniqueWriter() {
+		return new RestApiWriter<Technique>(TechniqueType.SINGLE);
 	}
-
+	
 	@Bean
-	TechniqueProcessor processor() {
-		return new TechniqueProcessor();
+	RestApiWriter<Technique> compositeWriter() {
+		return new RestApiWriter<Technique>(TechniqueType.COMPOSITE);
 	}
 	// end::readerwriterprocessor[]
 
 	// tag::jobstep[]
 	@Bean
-	Job importTechniqueJob(JobRepository jobRepository, Step importSingleTechniqueStep) {
+	Job importTechniqueJob(JobRepository jobRepository, Step importTechniquesStep, Step importCompositesStep) {
 		return new JobBuilder("importTechniqueJob", jobRepository)
 			.incrementer(new RunIdIncrementer())
-			.flow(importSingleTechniqueStep)
-			.end()
+			.start(importCompositesStep)
+			.next(importTechniquesStep)
 			.build();
 	}
-
+	
 	@Bean
-	Step importSingleTechniqueStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
-		return new StepBuilder("importSingleTechniqueStep", jobRepository)
-			.<SingleTechnique, SingleTechnique> chunk(10, transactionManager)
+	Step importCompositesStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
+		return new StepBuilder("importCompositesStep", jobRepository)
+			.<Technique, Technique> chunk(10, transactionManager)
 			.reader(reader())
-			.processor(processor())
-			.writer(writer())
+			.processor(new TechniqueProcessor(TechniqueType.COMPOSITE))
+			.writer(compositeWriter())
+			.build();
+	}
+	
+	@Bean
+	Step importTechniquesStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
+		return new StepBuilder("importTechniquesStep", jobRepository)
+			.<Technique, Technique> chunk(10, transactionManager)
+			.reader(reader())
+			.processor(new TechniqueProcessor(TechniqueType.SINGLE))
+			.writer(techniqueWriter())
 			.build();
 	}
 	// end::jobstep[]

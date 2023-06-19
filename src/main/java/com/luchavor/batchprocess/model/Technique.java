@@ -7,12 +7,13 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SingleTechnique {
-	private String matrixType;
+public class Technique {
+	private String model;
 	private String mitreId;
 	private String tactic;
 	private String name;
 	private String description;
 	private String parentMitreId;
-	private String level;
+	private String treeLevel;
+	private String type;
 }
