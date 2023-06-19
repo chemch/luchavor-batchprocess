@@ -1,1 +1,784 @@
-D3-CI,Model,Configuration Inventory,Configuration inventory identifies and records the configuration of software and hardware and their components throughout the organization.
+Matrix Type,Mitre ID,Tactic,Name,Description,Parent Mitre ID,Level
+ATT&CK,T1548,"Defense Evasion, Privilege Escalation",Abuse Elevation Control Mechanism,1,,0
+ATT&CK,T1548.002,"Defense Evasion, Privilege Escalation",Abuse Elevation Control Mechanism: Bypass User Account Control,1,T1548,1
+ATT&CK,T1548.004,"Defense Evasion, Privilege Escalation",Abuse Elevation Control Mechanism: Elevated Execution with Prompt,1,T1548,1
+ATT&CK,T1548.001,"Defense Evasion, Privilege Escalation",Abuse Elevation Control Mechanism: Setuid and Setgid,1,T1548,1
+ATT&CK,T1548.003,"Defense Evasion, Privilege Escalation",Abuse Elevation Control Mechanism: Sudo and Sudo Caching,1,T1548,1
+ATT&CK,T1134,"Defense Evasion, Privilege Escalation",Access Token Manipulation,1,,0
+ATT&CK,T1134.002,"Defense Evasion, Privilege Escalation",Access Token Manipulation: Create Process with Token,1,T1134,1
+ATT&CK,T1134.003,"Defense Evasion, Privilege Escalation",Access Token Manipulation: Make and Impersonate Token,1,T1134,1
+ATT&CK,T1134.004,"Defense Evasion, Privilege Escalation",Access Token Manipulation: Parent PID Spoofing,1,T1134,1
+ATT&CK,T1134.005,"Defense Evasion, Privilege Escalation",Access Token Manipulation: SID-History Injection,1,T1134,1
+ATT&CK,T1134.001,"Defense Evasion, Privilege Escalation",Access Token Manipulation: Token Impersonation/Theft,1,T1134,1
+ATT&CK,T1531,Impact,Account Access Removal,1,,0
+ATT&CK,T1087,Discovery,Account Discovery,1,,0
+ATT&CK,T1087.004,Discovery,Account Discovery: Cloud Account,1,T1087,1
+ATT&CK,T1087.002,Discovery,Account Discovery: Domain Account,1,T1087,1
+ATT&CK,T1087.003,Discovery,Account Discovery: Email Account,1,T1087,1
+ATT&CK,T1087.001,Discovery,Account Discovery: Local Account,1,T1087,1
+ATT&CK,T1098,Persistence,Account Manipulation,1,,0
+ATT&CK,T1098.001,Persistence,Account Manipulation: Additional Cloud Credentials,1,T1098,1
+ATT&CK,T1098.003,Persistence,Account Manipulation: Additional Cloud Roles,1,T1098,1
+ATT&CK,T1098.002,Persistence,Account Manipulation: Additional Email Delegate Permissions,1,T1098,1
+ATT&CK,T1098.005,Persistence,Account Manipulation: Device Registration,1,T1098,1
+ATT&CK,T1098.004,Persistence,Account Manipulation: SSH Authorized Keys,1,T1098,1
+ATT&CK,T1650,Resource Development,Acquire Access,1,,0
+ATT&CK,T1583,Resource Development,Acquire Infrastructure,1,,0
+ATT&CK,T1583.005,Resource Development,Acquire Infrastructure: Botnet,1,T1583,1
+ATT&CK,T1583.002,Resource Development,Acquire Infrastructure: DNS Server,1,T1583,1
+ATT&CK,T1583.001,Resource Development,Acquire Infrastructure: Domains,1,T1583,1
+ATT&CK,T1583.008,Resource Development,Acquire Infrastructure: Malvertising,1,T1583,1
+ATT&CK,T1583.004,Resource Development,Acquire Infrastructure: Server,1,T1583,1
+ATT&CK,T1583.007,Resource Development,Acquire Infrastructure: Serverless,1,T1583,1
+ATT&CK,T1583.003,Resource Development,Acquire Infrastructure: Virtual Private Server,1,T1583,1
+ATT&CK,T1583.006,Resource Development,Acquire Infrastructure: Web Services,1,T1583,1
+ATT&CK,T1595,Reconnaissance,Active Scanning,1,,0
+ATT&CK,T1595.001,Reconnaissance,Active Scanning: Scanning IP Blocks,1,T1595,1
+ATT&CK,T1595.002,Reconnaissance,Active Scanning: Vulnerability Scanning,1,T1595,1
+ATT&CK,T1595.003,Reconnaissance,Active Scanning: Wordlist Scanning,1,T1595,1
+ATT&CK,T1557,"Collection, Credential Access",Adversary-in-the-Middle,1,,0
+ATT&CK,T1557.002,"Collection, Credential Access",Adversary-in-the-Middle: ARP Cache Poisoning,1,T1557,1
+ATT&CK,T1557.003,"Collection, Credential Access",Adversary-in-the-Middle: DHCP Spoofing,1,T1557,1
+ATT&CK,T1557.001,"Collection, Credential Access",Adversary-in-the-Middle: LLMNR/NBT-NS Poisoning and SMB Relay,1,T1557,1
+ATT&CK,T1071,Command and Control,Application Layer Protocol,1,,0
+ATT&CK,T1071.004,Command and Control,Application Layer Protocol: DNS,1,T1071,1
+ATT&CK,T1071.002,Command and Control,Application Layer Protocol: File Transfer Protocols,1,T1071,1
+ATT&CK,T1071.003,Command and Control,Application Layer Protocol: Mail Protocols,1,T1071,1
+ATT&CK,T1071.001,Command and Control,Application Layer Protocol: Web Protocols,1,T1071,1
+ATT&CK,T1010,Discovery,Application Window Discovery,1,,0
+ATT&CK,T1560,Collection,Archive Collected Data,1,,0
+ATT&CK,T1560.003,Collection,Archive Collected Data: Archive via Custom Method,1,T1560,1
+ATT&CK,T1560.002,Collection,Archive Collected Data: Archive via Library,1,T1560,1
+ATT&CK,T1560.001,Collection,Archive Collected Data: Archive via Utility,1,T1560,1
+ATT&CK,T1123,Collection,Audio Capture,1,,0
+ATT&CK,T1119,Collection,Automated Collection,1,,0
+ATT&CK,T1020,Exfiltration,Automated Exfiltration,1,,0
+ATT&CK,T1020.001,Exfiltration,Automated Exfiltration: Traffic Duplication,1,T1020,1
+ATT&CK,T1197,"Defense Evasion, Persistence",BITS Jobs,1,,0
+ATT&CK,T1547,"Persistence, Privilege Escalation",Boot or Logon Autostart Execution,1,,0
+ATT&CK,T1547.014,"Persistence, Privilege Escalation",Boot or Logon Autostart Execution: Active Setup,1,T1547,1
+ATT&CK,T1547.002,"Persistence, Privilege Escalation",Boot or Logon Autostart Execution: Authentication Package,1,T1547,1
+ATT&CK,T1547.006,"Persistence, Privilege Escalation",Boot or Logon Autostart Execution: Kernel Modules and Extensions,1,T1547,1
+ATT&CK,T1547.008,"Persistence, Privilege Escalation",Boot or Logon Autostart Execution: LSASS Driver,1,T1547,1
+ATT&CK,T1547.015,"Persistence, Privilege Escalation",Boot or Logon Autostart Execution: Login Items,1,T1547,1
+ATT&CK,T1547.010,"Persistence, Privilege Escalation",Boot or Logon Autostart Execution: Port Monitors,1,T1547,1
+ATT&CK,T1547.012,"Persistence, Privilege Escalation",Boot or Logon Autostart Execution: Print Processors,1,T1547,1
+ATT&CK,T1547.007,"Persistence, Privilege Escalation",Boot or Logon Autostart Execution: Re-opened Applications,1,T1547,1
+ATT&CK,T1547.001,"Persistence, Privilege Escalation",Boot or Logon Autostart Execution: Registry Run Keys / Startup Folder,1,T1547,1
+ATT&CK,T1547.005,"Persistence, Privilege Escalation",Boot or Logon Autostart Execution: Security Support Provider,1,T1547,1
+ATT&CK,T1547.009,"Persistence, Privilege Escalation",Boot or Logon Autostart Execution: Shortcut Modification,1,T1547,1
+ATT&CK,T1547.003,"Persistence, Privilege Escalation",Boot or Logon Autostart Execution: Time Providers,1,T1547,1
+ATT&CK,T1547.004,"Persistence, Privilege Escalation",Boot or Logon Autostart Execution: Winlogon Helper DLL,1,T1547,1
+ATT&CK,T1547.013,"Persistence, Privilege Escalation",Boot or Logon Autostart Execution: XDG Autostart Entries,1,T1547,1
+ATT&CK,T1037,"Persistence, Privilege Escalation",Boot or Logon Initialization Scripts,1,,0
+ATT&CK,T1037.002,"Persistence, Privilege Escalation",Boot or Logon Initialization Scripts: Login Hook,1,T1037,1
+ATT&CK,T1037.001,"Persistence, Privilege Escalation",Boot or Logon Initialization Scripts: Logon Script (Windows),1,T1037,1
+ATT&CK,T1037.003,"Persistence, Privilege Escalation",Boot or Logon Initialization Scripts: Network Logon Script,1,T1037,1
+ATT&CK,T1037.004,"Persistence, Privilege Escalation",Boot or Logon Initialization Scripts: RC Scripts,1,T1037,1
+ATT&CK,T1037.005,"Persistence, Privilege Escalation",Boot or Logon Initialization Scripts: Startup Items,1,T1037,1
+ATT&CK,T1176,Persistence,Browser Extensions,1,,0
+ATT&CK,T1217,Discovery,Browser Information Discovery,1,,0
+ATT&CK,T1185,Collection,Browser Session Hijacking,1,,0
+ATT&CK,T1110,Credential Access,Brute Force,1,,0
+ATT&CK,T1110.004,Credential Access,Brute Force: Credential Stuffing,1,T1110,1
+ATT&CK,T1110.002,Credential Access,Brute Force: Password Cracking,1,T1110,1
+ATT&CK,T1110.001,Credential Access,Brute Force: Password Guessing,1,T1110,1
+ATT&CK,T1110.003,Credential Access,Brute Force: Password Spraying,1,T1110,1
+ATT&CK,T1612,Defense Evasion,Build Image on Host,1,,0
+ATT&CK,T1115,Collection,Clipboard Data,1,,0
+ATT&CK,T1651,Execution,Cloud Administration Command,1,,0
+ATT&CK,T1580,Discovery,Cloud Infrastructure Discovery,1,,0
+ATT&CK,T1538,Discovery,Cloud Service Dashboard,1,,0
+ATT&CK,T1526,Discovery,Cloud Service Discovery,1,,0
+ATT&CK,T1619,Discovery,Cloud Storage Object Discovery,1,,0
+ATT&CK,T1059,Execution,Command and Scripting Interpreter,1,,0
+ATT&CK,T1059.002,Execution,Command and Scripting Interpreter: AppleScript,1,T1059,1
+ATT&CK,T1059.009,Execution,Command and Scripting Interpreter: Cloud API,1,T1059,1
+ATT&CK,T1059.007,Execution,Command and Scripting Interpreter: JavaScript,1,T1059,1
+ATT&CK,T1059.008,Execution,Command and Scripting Interpreter: Network Device CLI,1,T1059,1
+ATT&CK,T1059.001,Execution,Command and Scripting Interpreter: PowerShell,1,T1059,1
+ATT&CK,T1059.006,Execution,Command and Scripting Interpreter: Python,1,T1059,1
+ATT&CK,T1059.004,Execution,Command and Scripting Interpreter: Unix Shell,1,T1059,1
+ATT&CK,T1059.005,Execution,Command and Scripting Interpreter: Visual Basic,1,T1059,1
+ATT&CK,T1059.003,Execution,Command and Scripting Interpreter: Windows Command Shell,1,T1059,1
+ATT&CK,T1092,Command and Control,Communication Through Removable Media,1,,0
+ATT&CK,T1586,Resource Development,Compromise Accounts,1,,0
+ATT&CK,T1586.003,Resource Development,Compromise Accounts: Cloud Accounts,1,T1586,1
+ATT&CK,T1586.002,Resource Development,Compromise Accounts: Email Accounts,1,T1586,1
+ATT&CK,T1586.001,Resource Development,Compromise Accounts: Social Media Accounts,1,T1586,1
+ATT&CK,T1554,Persistence,Compromise Client Software Binary,1,,0
+ATT&CK,T1584,Resource Development,Compromise Infrastructure,1,,0
+ATT&CK,T1584.005,Resource Development,Compromise Infrastructure: Botnet,1,T1584,1
+ATT&CK,T1584.002,Resource Development,Compromise Infrastructure: DNS Server,1,T1584,1
+ATT&CK,T1584.001,Resource Development,Compromise Infrastructure: Domains,1,T1584,1
+ATT&CK,T1584.004,Resource Development,Compromise Infrastructure: Server,1,T1584,1
+ATT&CK,T1584.007,Resource Development,Compromise Infrastructure: Serverless,1,T1584,1
+ATT&CK,T1584.003,Resource Development,Compromise Infrastructure: Virtual Private Server,1,T1584,1
+ATT&CK,T1584.006,Resource Development,Compromise Infrastructure: Web Services,1,T1584,1
+ATT&CK,T1609,Execution,Container Administration Command,1,,0
+ATT&CK,T1613,Discovery,Container and Resource Discovery,1,,0
+ATT&CK,T1136,Persistence,Create Account,1,,0
+ATT&CK,T1136.003,Persistence,Create Account: Cloud Account,1,T1136,1
+ATT&CK,T1136.002,Persistence,Create Account: Domain Account,1,T1136,1
+ATT&CK,T1136.001,Persistence,Create Account: Local Account,1,T1136,1
+ATT&CK,T1543,"Persistence, Privilege Escalation",Create or Modify System Process,1,,0
+ATT&CK,T1543.001,"Persistence, Privilege Escalation",Create or Modify System Process: Launch Agent,1,T1543,1
+ATT&CK,T1543.004,"Persistence, Privilege Escalation",Create or Modify System Process: Launch Daemon,1,T1543,1
+ATT&CK,T1543.002,"Persistence, Privilege Escalation",Create or Modify System Process: Systemd Service,1,T1543,1
+ATT&CK,T1543.003,"Persistence, Privilege Escalation",Create or Modify System Process: Windows Service,1,T1543,1
+ATT&CK,T1555,Credential Access,Credentials from Password Stores,1,,0
+ATT&CK,T1555.003,Credential Access,Credentials from Password Stores: Credentials from Web Browsers,1,T1555,1
+ATT&CK,T1555.001,Credential Access,Credentials from Password Stores: Keychain,1,T1555,1
+ATT&CK,T1555.005,Credential Access,Credentials from Password Stores: Password Managers,1,T1555,1
+ATT&CK,T1555.002,Credential Access,Credentials from Password Stores: Securityd Memory,1,T1555,1
+ATT&CK,T1555.004,Credential Access,Credentials from Password Stores: Windows Credential Manager,1,T1555,1
+ATT&CK,T1485,Impact,Data Destruction,1,,0
+ATT&CK,T1132,Command and Control,Data Encoding,1,,0
+ATT&CK,T1132.002,Command and Control,Data Encoding: Non-Standard Encoding,1,T1132,1
+ATT&CK,T1132.001,Command and Control,Data Encoding: Standard Encoding,1,T1132,1
+ATT&CK,T1486,Impact,Data Encrypted for Impact,1,,0
+ATT&CK,T1565,Impact,Data Manipulation,1,,0
+ATT&CK,T1565.003,Impact,Data Manipulation: Runtime Data Manipulation,1,T1565,1
+ATT&CK,T1565.001,Impact,Data Manipulation: Stored Data Manipulation,1,T1565,1
+ATT&CK,T1565.002,Impact,Data Manipulation: Transmitted Data Manipulation,1,T1565,1
+ATT&CK,T1001,Command and Control,Data Obfuscation,1,,0
+ATT&CK,T1001.001,Command and Control,Data Obfuscation: Junk Data,1,T1001,1
+ATT&CK,T1001.003,Command and Control,Data Obfuscation: Protocol Impersonation,1,T1001,1
+ATT&CK,T1001.002,Command and Control,Data Obfuscation: Steganography,1,T1001,1
+ATT&CK,T1074,Collection,Data Staged,1,,0
+ATT&CK,T1074.001,Collection,Data Staged: Local Data Staging,1,T1074,1
+ATT&CK,T1074.002,Collection,Data Staged: Remote Data Staging,1,T1074,1
+ATT&CK,T1030,Exfiltration,Data Transfer Size Limits,1,,0
+ATT&CK,T1530,Collection,Data from Cloud Storage,1,,0
+ATT&CK,T1602,Collection,Data from Configuration Repository,1,,0
+ATT&CK,T1602.002,Collection,Data from Configuration Repository: Network Device Configuration Dump,1,T1602,1
+ATT&CK,T1602.001,Collection,Data from Configuration Repository: SNMP (MIB Dump),1,T1602,1
+ATT&CK,T1213,Collection,Data from Information Repositories,1,,0
+ATT&CK,T1213.003,Collection,Data from Information Repositories: Code Repositories,1,T1213,1
+ATT&CK,T1213.001,Collection,Data from Information Repositories: Confluence,1,T1213,1
+ATT&CK,T1213.002,Collection,Data from Information Repositories: Sharepoint,1,T1213,1
+ATT&CK,T1005,Collection,Data from Local System,1,,0
+ATT&CK,T1039,Collection,Data from Network Shared Drive,1,,0
+ATT&CK,T1025,Collection,Data from Removable Media,1,,0
+ATT&CK,T1622,"Defense Evasion, Discovery",Debugger Evasion,1,,0
+ATT&CK,T1491,Impact,Defacement,1,,0
+ATT&CK,T1491.002,Impact,Defacement: External Defacement,1,T1491,1
+ATT&CK,T1491.001,Impact,Defacement: Internal Defacement,1,T1491,1
+ATT&CK,T1140,Defense Evasion,Deobfuscate/Decode Files or Information,1,,0
+ATT&CK,T1610,"Defense Evasion, Execution",Deploy Container,1,,0
+ATT&CK,T1587,Resource Development,Develop Capabilities,1,,0
+ATT&CK,T1587.002,Resource Development,Develop Capabilities: Code Signing Certificates,1,T1587,1
+ATT&CK,T1587.003,Resource Development,Develop Capabilities: Digital Certificates,1,T1587,1
+ATT&CK,T1587.004,Resource Development,Develop Capabilities: Exploits,1,T1587,1
+ATT&CK,T1587.001,Resource Development,Develop Capabilities: Malware,1,T1587,1
+ATT&CK,T1652,Discovery,Device Driver Discovery,1,,0
+ATT&CK,T1006,Defense Evasion,Direct Volume Access,1,,0
+ATT&CK,T1561,Impact,Disk Wipe,1,,0
+ATT&CK,T1561.001,Impact,Disk Wipe: Disk Content Wipe,1,T1561,1
+ATT&CK,T1561.002,Impact,Disk Wipe: Disk Structure Wipe,1,T1561,1
+ATT&CK,T1484,"Defense Evasion, Privilege Escalation",Domain Policy Modification,1,,0
+ATT&CK,T1484.002,"Defense Evasion, Privilege Escalation",Domain Policy Modification: Domain Trust Modification,1,T1484,1
+ATT&CK,T1484.001,"Defense Evasion, Privilege Escalation",Domain Policy Modification: Group Policy Modification,1,T1484,1
+ATT&CK,T1482,Discovery,Domain Trust Discovery,1,,0
+ATT&CK,T1189,Initial Access,Drive-by Compromise,1,,0
+ATT&CK,T1568,Command and Control,Dynamic Resolution,1,,0
+ATT&CK,T1568.003,Command and Control,Dynamic Resolution: DNS Calculation,1,T1568,1
+ATT&CK,T1568.002,Command and Control,Dynamic Resolution: Domain Generation Algorithms,1,T1568,1
+ATT&CK,T1568.001,Command and Control,Dynamic Resolution: Fast Flux DNS,1,T1568,1
+ATT&CK,T1114,Collection,Email Collection,1,,0
+ATT&CK,T1114.003,Collection,Email Collection: Email Forwarding Rule,1,T1114,1
+ATT&CK,T1114.001,Collection,Email Collection: Local Email Collection,1,T1114,1
+ATT&CK,T1114.002,Collection,Email Collection: Remote Email Collection,1,T1114,1
+ATT&CK,T1573,Command and Control,Encrypted Channel,1,,0
+ATT&CK,T1573.002,Command and Control,Encrypted Channel: Asymmetric Cryptography,1,T1573,1
+ATT&CK,T1573.001,Command and Control,Encrypted Channel: Symmetric Cryptography,1,T1573,1
+ATT&CK,T1499,Impact,Endpoint Denial of Service,1,,0
+ATT&CK,T1499.003,Impact,Endpoint Denial of Service: Application Exhaustion Flood,1,T1499,1
+ATT&CK,T1499.004,Impact,Endpoint Denial of Service: Application or System Exploitation,1,T1499,1
+ATT&CK,T1499.001,Impact,Endpoint Denial of Service: OS Exhaustion Flood,1,T1499,1
+ATT&CK,T1499.002,Impact,Endpoint Denial of Service: Service Exhaustion Flood,1,T1499,1
+ATT&CK,T1611,Privilege Escalation,Escape to Host,1,,0
+ATT&CK,T1585,Resource Development,Establish Accounts,1,,0
+ATT&CK,T1585.003,Resource Development,Establish Accounts: Cloud Accounts,1,T1585,1
+ATT&CK,T1585.002,Resource Development,Establish Accounts: Email Accounts,1,T1585,1
+ATT&CK,T1585.001,Resource Development,Establish Accounts: Social Media Accounts,1,T1585,1
+ATT&CK,T1546,"Persistence, Privilege Escalation",Event Triggered Execution,1,,0
+ATT&CK,T1546.008,"Persistence, Privilege Escalation",Event Triggered Execution: Accessibility Features,1,T1546,1
+ATT&CK,T1546.009,"Persistence, Privilege Escalation",Event Triggered Execution: AppCert DLLs,1,T1546,1
+ATT&CK,T1546.010,"Persistence, Privilege Escalation",Event Triggered Execution: AppInit DLLs,1,T1546,1
+ATT&CK,T1546.011,"Persistence, Privilege Escalation",Event Triggered Execution: Application Shimming,1,T1546,1
+ATT&CK,T1546.001,"Persistence, Privilege Escalation",Event Triggered Execution: Change Default File Association,1,T1546,1
+ATT&CK,T1546.015,"Persistence, Privilege Escalation",Event Triggered Execution: Component Object Model Hijacking,1,T1546,1
+ATT&CK,T1546.014,"Persistence, Privilege Escalation",Event Triggered Execution: Emond,1,T1546,1
+ATT&CK,T1546.012,"Persistence, Privilege Escalation",Event Triggered Execution: Image File Execution Options Injection,1,T1546,1
+ATT&CK,T1546.016,"Persistence, Privilege Escalation",Event Triggered Execution: Installer Packages,1,T1546,1
+ATT&CK,T1546.006,"Persistence, Privilege Escalation",Event Triggered Execution: LC_LOAD_DYLIB Addition,1,T1546,1
+ATT&CK,T1546.007,"Persistence, Privilege Escalation",Event Triggered Execution: Netsh Helper DLL,1,T1546,1
+ATT&CK,T1546.013,"Persistence, Privilege Escalation",Event Triggered Execution: PowerShell Profile,1,T1546,1
+ATT&CK,T1546.002,"Persistence, Privilege Escalation",Event Triggered Execution: Screensaver,1,T1546,1
+ATT&CK,T1546.005,"Persistence, Privilege Escalation",Event Triggered Execution: Trap,1,T1546,1
+ATT&CK,T1546.004,"Persistence, Privilege Escalation",Event Triggered Execution: Unix Shell Configuration Modification,1,T1546,1
+ATT&CK,T1546.003,"Persistence, Privilege Escalation",Event Triggered Execution: Windows Management Instrumentation Event Subscription,1,T1546,1
+ATT&CK,T1480,Defense Evasion,Execution Guardrails,1,,0
+ATT&CK,T1480.001,Defense Evasion,Execution Guardrails: Environmental Keying,1,T1480,1
+ATT&CK,T1048,Exfiltration,Exfiltration Over Alternative Protocol,1,,0
+ATT&CK,T1048.002,Exfiltration,Exfiltration Over Alternative Protocol: Exfiltration Over Asymmetric Encrypted Non-C2 Protocol,1,T1048,1
+ATT&CK,T1048.001,Exfiltration,Exfiltration Over Alternative Protocol: Exfiltration Over Symmetric Encrypted Non-C2 Protocol,1,T1048,1
+ATT&CK,T1048.003,Exfiltration,Exfiltration Over Alternative Protocol: Exfiltration Over Unencrypted Non-C2 Protocol,1,T1048,1
+ATT&CK,T1041,Exfiltration,Exfiltration Over C2 Channel,1,,0
+ATT&CK,T1011,Exfiltration,Exfiltration Over Other Network Medium,1,,0
+ATT&CK,T1011.001,Exfiltration,Exfiltration Over Other Network Medium: Exfiltration Over Bluetooth,1,T1011,1
+ATT&CK,T1052,Exfiltration,Exfiltration Over Physical Medium,1,,0
+ATT&CK,T1052.001,Exfiltration,Exfiltration Over Physical Medium: Exfiltration over USB,1,T1052,1
+ATT&CK,T1567,Exfiltration,Exfiltration Over Web Service,1,,0
+ATT&CK,T1567.002,Exfiltration,Exfiltration Over Web Service: Exfiltration to Cloud Storage,1,T1567,1
+ATT&CK,T1567.001,Exfiltration,Exfiltration Over Web Service: Exfiltration to Code Repository,1,T1567,1
+ATT&CK,T1567.003,Exfiltration,Exfiltration Over Web Service: Exfiltration to Text Storage Sites,1,T1567,1
+ATT&CK,T1190,Initial Access,Exploit Public-Facing Application,1,,0
+ATT&CK,T1203,Execution,Exploitation for Client Execution,1,,0
+ATT&CK,T1212,Credential Access,Exploitation for Credential Access,1,,0
+ATT&CK,T1211,Defense Evasion,Exploitation for Defense Evasion,1,,0
+ATT&CK,T1068,Privilege Escalation,Exploitation for Privilege Escalation,1,,0
+ATT&CK,T1210,Lateral Movement,Exploitation of Remote Services,1,,0
+ATT&CK,T1133,"Initial Access, Persistence",External Remote Services,1,,0
+ATT&CK,T1008,Command and Control,Fallback Channels,1,,0
+ATT&CK,T1083,Discovery,File and Directory Discovery,1,,0
+ATT&CK,T1222,Defense Evasion,File and Directory Permissions Modification,1,,0
+ATT&CK,T1222.002,Defense Evasion,File and Directory Permissions Modification: Linux and Mac File and Directory Permissions Modification,1,T1222,1
+ATT&CK,T1222.001,Defense Evasion,File and Directory Permissions Modification: Windows File and Directory Permissions Modification,1,T1222,1
+ATT&CK,T1495,Impact,Firmware Corruption,1,,0
+ATT&CK,T1187,Credential Access,Forced Authentication,1,,0
+ATT&CK,T1606,Credential Access,Forge Web Credentials,1,,0
+ATT&CK,T1606.002,Credential Access,Forge Web Credentials: SAML Tokens,1,T1606,1
+ATT&CK,T1606.001,Credential Access,Forge Web Credentials: Web Cookies,1,T1606,1
+ATT&CK,T1592,Reconnaissance,Gather Victim Host Information,1,,0
+ATT&CK,T1592.004,Reconnaissance,Gather Victim Host Information: Client Configurations,1,T1592,1
+ATT&CK,T1592.003,Reconnaissance,Gather Victim Host Information: Firmware,1,T1592,1
+ATT&CK,T1592.001,Reconnaissance,Gather Victim Host Information: Hardware,1,T1592,1
+ATT&CK,T1592.002,Reconnaissance,Gather Victim Host Information: Software,1,T1592,1
+ATT&CK,T1589,Reconnaissance,Gather Victim Identity Information,1,,0
+ATT&CK,T1589.001,Reconnaissance,Gather Victim Identity Information: Credentials,1,T1589,1
+ATT&CK,T1589.002,Reconnaissance,Gather Victim Identity Information: Email Addresses,1,T1589,1
+ATT&CK,T1589.003,Reconnaissance,Gather Victim Identity Information: Employee Names,1,T1589,1
+ATT&CK,T1590,Reconnaissance,Gather Victim Network Information,1,,0
+ATT&CK,T1590.002,Reconnaissance,Gather Victim Network Information: DNS,1,T1590,1
+ATT&CK,T1590.001,Reconnaissance,Gather Victim Network Information: Domain Properties,1,T1590,1
+ATT&CK,T1590.005,Reconnaissance,Gather Victim Network Information: IP Addresses,1,T1590,1
+ATT&CK,T1590.006,Reconnaissance,Gather Victim Network Information: Network Security Appliances,1,T1590,1
+ATT&CK,T1590.004,Reconnaissance,Gather Victim Network Information: Network Topology,1,T1590,1
+ATT&CK,T1590.003,Reconnaissance,Gather Victim Network Information: Network Trust Dependencies,1,T1590,1
+ATT&CK,T1591,Reconnaissance,Gather Victim Org Information,1,,0
+ATT&CK,T1591.002,Reconnaissance,Gather Victim Org Information: Business Relationships,1,T1591,1
+ATT&CK,T1591.001,Reconnaissance,Gather Victim Org Information: Determine Physical Locations,1,T1591,1
+ATT&CK,T1591.003,Reconnaissance,Gather Victim Org Information: Identify Business Tempo,1,T1591,1
+ATT&CK,T1591.004,Reconnaissance,Gather Victim Org Information: Identify Roles,1,T1591,1
+ATT&CK,T1615,Discovery,Group Policy Discovery,1,,0
+ATT&CK,T1200,Initial Access,Hardware Additions,1,,0
+ATT&CK,T1564,Defense Evasion,Hide Artifacts,1,,0
+ATT&CK,T1564.008,Defense Evasion,Hide Artifacts: Email Hiding Rules,1,T1564,1
+ATT&CK,T1564.005,Defense Evasion,Hide Artifacts: Hidden File System,1,T1564,1
+ATT&CK,T1564.001,Defense Evasion,Hide Artifacts: Hidden Files and Directories,1,T1564,1
+ATT&CK,T1564.002,Defense Evasion,Hide Artifacts: Hidden Users,1,T1564,1
+ATT&CK,T1564.003,Defense Evasion,Hide Artifacts: Hidden Window,1,T1564,1
+ATT&CK,T1564.004,Defense Evasion,Hide Artifacts: NTFS File Attributes,1,T1564,1
+ATT&CK,T1564.010,Defense Evasion,Hide Artifacts: Process Argument Spoofing,1,T1564,1
+ATT&CK,T1564.009,Defense Evasion,Hide Artifacts: Resource Forking,1,T1564,1
+ATT&CK,T1564.006,Defense Evasion,Hide Artifacts: Run Virtual Instance,1,T1564,1
+ATT&CK,T1564.007,Defense Evasion,Hide Artifacts: VBA Stomping,1,T1564,1
+ATT&CK,T1574,"Defense Evasion, Persistence, Privilege Escalation",Hijack Execution Flow,1,,0
+ATT&CK,T1574.012,"Defense Evasion, Persistence, Privilege Escalation",Hijack Execution Flow: COR_PROFILER,1,T1574,1
+ATT&CK,T1574.001,"Defense Evasion, Persistence, Privilege Escalation",Hijack Execution Flow: DLL Search Order Hijacking,1,T1574,1
+ATT&CK,T1574.002,"Defense Evasion, Persistence, Privilege Escalation",Hijack Execution Flow: DLL Side-Loading,1,T1574,1
+ATT&CK,T1574.004,"Defense Evasion, Persistence, Privilege Escalation",Hijack Execution Flow: Dylib Hijacking,1,T1574,1
+ATT&CK,T1574.006,"Defense Evasion, Persistence, Privilege Escalation",Hijack Execution Flow: Dynamic Linker Hijacking,1,T1574,1
+ATT&CK,T1574.005,"Defense Evasion, Persistence, Privilege Escalation",Hijack Execution Flow: Executable Installer File Permissions Weakness,1,T1574,1
+ATT&CK,T1574.013,"Defense Evasion, Persistence, Privilege Escalation",Hijack Execution Flow: KernelCallbackTable,1,T1574,1
+ATT&CK,T1574.007,"Defense Evasion, Persistence, Privilege Escalation",Hijack Execution Flow: Path Interception by PATH Environment Variable,1,T1574,1
+ATT&CK,T1574.008,"Defense Evasion, Persistence, Privilege Escalation",Hijack Execution Flow: Path Interception by Search Order Hijacking,1,T1574,1
+ATT&CK,T1574.009,"Defense Evasion, Persistence, Privilege Escalation",Hijack Execution Flow: Path Interception by Unquoted Path,1,T1574,1
+ATT&CK,T1574.010,"Defense Evasion, Persistence, Privilege Escalation",Hijack Execution Flow: Services File Permissions Weakness,1,T1574,1
+ATT&CK,T1574.011,"Defense Evasion, Persistence, Privilege Escalation",Hijack Execution Flow: Services Registry Permissions Weakness,1,T1574,1
+ATT&CK,T1562,Defense Evasion,Impair Defenses,1,,0
+ATT&CK,T1562.008,Defense Evasion,Impair Defenses: Disable Cloud Logs,1,T1562,1
+ATT&CK,T1562.002,Defense Evasion,Impair Defenses: Disable Windows Event Logging,1,T1562,1
+ATT&CK,T1562.007,Defense Evasion,Impair Defenses: Disable or Modify Cloud Firewall,1,T1562,1
+ATT&CK,T1562.004,Defense Evasion,Impair Defenses: Disable or Modify System Firewall,1,T1562,1
+ATT&CK,T1562.001,Defense Evasion,Impair Defenses: Disable or Modify Tools,1,T1562,1
+ATT&CK,T1562.010,Defense Evasion,Impair Defenses: Downgrade Attack,1,T1562,1
+ATT&CK,T1562.003,Defense Evasion,Impair Defenses: Impair Command History Logging,1,T1562,1
+ATT&CK,T1562.006,Defense Evasion,Impair Defenses: Indicator Blocking,1,T1562,1
+ATT&CK,T1562.009,Defense Evasion,Impair Defenses: Safe Mode Boot,1,T1562,1
+ATT&CK,T1562.011,Defense Evasion,Impair Defenses: Spoof Security Alerting,1,T1562,1
+ATT&CK,T1525,Persistence,Implant Internal Image,1,,0
+ATT&CK,T1070,Defense Evasion,Indicator Removal,1,,0
+ATT&CK,T1070.003,Defense Evasion,Indicator Removal: Clear Command History,1,T1070,1
+ATT&CK,T1070.002,Defense Evasion,Indicator Removal: Clear Linux or Mac System Logs,1,T1070,1
+ATT&CK,T1070.008,Defense Evasion,Indicator Removal: Clear Mailbox Data,1,T1070,1
+ATT&CK,T1070.007,Defense Evasion,Indicator Removal: Clear Network Connection History and Configurations,1,T1070,1
+ATT&CK,T1070.009,Defense Evasion,Indicator Removal: Clear Persistence,1,T1070,1
+ATT&CK,T1070.001,Defense Evasion,Indicator Removal: Clear Windows Event Logs,1,T1070,1
+ATT&CK,T1070.004,Defense Evasion,Indicator Removal: File Deletion,1,T1070,1
+ATT&CK,T1070.005,Defense Evasion,Indicator Removal: Network Share Connection Removal,1,T1070,1
+ATT&CK,T1070.006,Defense Evasion,Indicator Removal: Timestomp,1,T1070,1
+ATT&CK,T1202,Defense Evasion,Indirect Command Execution,1,,0
+ATT&CK,T1105,Command and Control,Ingress Tool Transfer,1,,0
+ATT&CK,T1490,Impact,Inhibit System Recovery,1,,0
+ATT&CK,T1056,"Collection, Credential Access",Input Capture,1,,0
+ATT&CK,T1056.004,"Collection, Credential Access",Input Capture: Credential API Hooking,1,T1056,1
+ATT&CK,T1056.002,"Collection, Credential Access",Input Capture: GUI Input Capture,1,T1056,1
+ATT&CK,T1056.001,"Collection, Credential Access",Input Capture: Keylogging,1,T1056,1
+ATT&CK,T1056.003,"Collection, Credential Access",Input Capture: Web Portal Capture,1,T1056,1
+ATT&CK,T1559,Execution,Inter-Process Communication,1,,0
+ATT&CK,T1559.001,Execution,Inter-Process Communication: Component Object Model,1,T1559,1
+ATT&CK,T1559.002,Execution,Inter-Process Communication: Dynamic Data Exchange,1,T1559,1
+ATT&CK,T1559.003,Execution,Inter-Process Communication: XPC Services,1,T1559,1
+ATT&CK,T1534,Lateral Movement,Internal Spearphishing,1,,0
+ATT&CK,T1570,Lateral Movement,Lateral Tool Transfer,1,,0
+ATT&CK,T1036,Defense Evasion,Masquerading,1,,0
+ATT&CK,T1036.007,Defense Evasion,Masquerading: Double File Extension,1,T1036,1
+ATT&CK,T1036.001,Defense Evasion,Masquerading: Invalid Code Signature,1,T1036,1
+ATT&CK,T1036.008,Defense Evasion,Masquerading: Masquerade File Type,1,T1036,1
+ATT&CK,T1036.004,Defense Evasion,Masquerading: Masquerade Task or Service,1,T1036,1
+ATT&CK,T1036.005,Defense Evasion,Masquerading: Match Legitimate Name or Location,1,T1036,1
+ATT&CK,T1036.003,Defense Evasion,Masquerading: Rename System Utilities,1,T1036,1
+ATT&CK,T1036.002,Defense Evasion,Masquerading: Right-to-Left Override,1,T1036,1
+ATT&CK,T1036.006,Defense Evasion,Masquerading: Space after Filename,1,T1036,1
+ATT&CK,T1556,"Credential Access, Defense Evasion, Persistence",Modify Authentication Process,1,,0
+ATT&CK,T1556.001,"Credential Access, Defense Evasion, Persistence",Modify Authentication Process: Domain Controller Authentication,1,T1556,1
+ATT&CK,T1556.007,"Credential Access, Defense Evasion, Persistence",Modify Authentication Process: Hybrid Identity,1,T1556,1
+ATT&CK,T1556.006,"Credential Access, Defense Evasion, Persistence",Modify Authentication Process: Multi-Factor Authentication,1,T1556,1
+ATT&CK,T1556.004,"Credential Access, Defense Evasion, Persistence",Modify Authentication Process: Network Device Authentication,1,T1556,1
+ATT&CK,T1556.008,"Credential Access, Defense Evasion, Persistence",Modify Authentication Process: Network Provider DLL,1,T1556,1
+ATT&CK,T1556.002,"Credential Access, Defense Evasion, Persistence",Modify Authentication Process: Password Filter DLL,1,T1556,1
+ATT&CK,T1556.003,"Credential Access, Defense Evasion, Persistence",Modify Authentication Process: Pluggable Authentication Modules,1,T1556,1
+ATT&CK,T1556.005,"Credential Access, Defense Evasion, Persistence",Modify Authentication Process: Reversible Encryption,1,T1556,1
+ATT&CK,T1578,Defense Evasion,Modify Cloud Compute Infrastructure,1,,0
+ATT&CK,T1578.002,Defense Evasion,Modify Cloud Compute Infrastructure: Create Cloud Instance,1,T1578,1
+ATT&CK,T1578.001,Defense Evasion,Modify Cloud Compute Infrastructure: Create Snapshot,1,T1578,1
+ATT&CK,T1578.003,Defense Evasion,Modify Cloud Compute Infrastructure: Delete Cloud Instance,1,T1578,1
+ATT&CK,T1578.004,Defense Evasion,Modify Cloud Compute Infrastructure: Revert Cloud Instance,1,T1578,1
+ATT&CK,T1112,Defense Evasion,Modify Registry,1,,0
+ATT&CK,T1601,Defense Evasion,Modify System Image,1,,0
+ATT&CK,T1601.002,Defense Evasion,Modify System Image: Downgrade System Image,1,T1601,1
+ATT&CK,T1601.001,Defense Evasion,Modify System Image: Patch System Image,1,T1601,1
+ATT&CK,T1111,Credential Access,Multi-Factor Authentication Interception,1,,0
+ATT&CK,T1621,Credential Access,Multi-Factor Authentication Request Generation,1,,0
+ATT&CK,T1104,Command and Control,Multi-Stage Channels,1,,0
+ATT&CK,T1106,Execution,Native API,1,,0
+ATT&CK,T1599,Defense Evasion,Network Boundary Bridging,1,,0
+ATT&CK,T1599.001,Defense Evasion,Network Boundary Bridging: Network Address Translation Traversal,1,T1599,1
+ATT&CK,T1498,Impact,Network Denial of Service,1,,0
+ATT&CK,T1498.001,Impact,Network Denial of Service: Direct Network Flood,1,T1498,1
+ATT&CK,T1498.002,Impact,Network Denial of Service: Reflection Amplification,1,T1498,1
+ATT&CK,T1046,Discovery,Network Service Discovery,1,,0
+ATT&CK,T1135,Discovery,Network Share Discovery,1,,0
+ATT&CK,T1040,"Credential Access, Discovery",Network Sniffing,1,,0
+ATT&CK,T1095,Command and Control,Non-Application Layer Protocol,1,,0
+ATT&CK,T1571,Command and Control,Non-Standard Port,1,,0
+ATT&CK,T1003,Credential Access,OS Credential Dumping,1,,0
+ATT&CK,T1003.008,Credential Access,OS Credential Dumping: /etc/passwd and /etc/shadow,1,T1003,1
+ATT&CK,T1003.005,Credential Access,OS Credential Dumping: Cached Domain Credentials,1,T1003,1
+ATT&CK,T1003.006,Credential Access,OS Credential Dumping: DCSync,1,T1003,1
+ATT&CK,T1003.004,Credential Access,OS Credential Dumping: LSA Secrets,1,T1003,1
+ATT&CK,T1003.001,Credential Access,OS Credential Dumping: LSASS Memory,1,T1003,1
+ATT&CK,T1003.003,Credential Access,OS Credential Dumping: NTDS,1,T1003,1
+ATT&CK,T1003.007,Credential Access,OS Credential Dumping: Proc Filesystem,1,T1003,1
+ATT&CK,T1003.002,Credential Access,OS Credential Dumping: Security Account Manager,1,T1003,1
+ATT&CK,T1027,Defense Evasion,Obfuscated Files or Information,1,,0
+ATT&CK,T1027.001,Defense Evasion,Obfuscated Files or Information: Binary Padding,1,T1027,1
+ATT&CK,T1027.010,Defense Evasion,Obfuscated Files or Information: Command Obfuscation,1,T1027,1
+ATT&CK,T1027.004,Defense Evasion,Obfuscated Files or Information: Compile After Delivery,1,T1027,1
+ATT&CK,T1027.007,Defense Evasion,Obfuscated Files or Information: Dynamic API Resolution,1,T1027,1
+ATT&CK,T1027.009,Defense Evasion,Obfuscated Files or Information: Embedded Payloads,1,T1027,1
+ATT&CK,T1027.011,Defense Evasion,Obfuscated Files or Information: Fileless Storage,1,T1027,1
+ATT&CK,T1027.006,Defense Evasion,Obfuscated Files or Information: HTML Smuggling,1,T1027,1
+ATT&CK,T1027.005,Defense Evasion,Obfuscated Files or Information: Indicator Removal from Tools,1,T1027,1
+ATT&CK,T1027.002,Defense Evasion,Obfuscated Files or Information: Software Packing,1,T1027,1
+ATT&CK,T1027.003,Defense Evasion,Obfuscated Files or Information: Steganography,1,T1027,1
+ATT&CK,T1027.008,Defense Evasion,Obfuscated Files or Information: Stripped Payloads,1,T1027,1
+ATT&CK,T1588,Resource Development,Obtain Capabilities,1,,0
+ATT&CK,T1588.003,Resource Development,Obtain Capabilities: Code Signing Certificates,1,T1588,1
+ATT&CK,T1588.004,Resource Development,Obtain Capabilities: Digital Certificates,1,T1588,1
+ATT&CK,T1588.005,Resource Development,Obtain Capabilities: Exploits,1,T1588,1
+ATT&CK,T1588.001,Resource Development,Obtain Capabilities: Malware,1,T1588,1
+ATT&CK,T1588.002,Resource Development,Obtain Capabilities: Tool,1,T1588,1
+ATT&CK,T1588.006,Resource Development,Obtain Capabilities: Vulnerabilities,1,T1588,1
+ATT&CK,T1137,Persistence,Office Application Startup,1,,0
+ATT&CK,T1137.006,Persistence,Office Application Startup: Add-ins,1,T1137,1
+ATT&CK,T1137.001,Persistence,Office Application Startup: Office Template Macros,1,T1137,1
+ATT&CK,T1137.002,Persistence,Office Application Startup: Office Test,1,T1137,1
+ATT&CK,T1137.003,Persistence,Office Application Startup: Outlook Forms,1,T1137,1
+ATT&CK,T1137.004,Persistence,Office Application Startup: Outlook Home Page,1,T1137,1
+ATT&CK,T1137.005,Persistence,Office Application Startup: Outlook Rules,1,T1137,1
+ATT&CK,T1201,Discovery,Password Policy Discovery,1,,0
+ATT&CK,T1120,Discovery,Peripheral Device Discovery,1,,0
+ATT&CK,T1069,Discovery,Permission Groups Discovery,1,,0
+ATT&CK,T1069.003,Discovery,Permission Groups Discovery: Cloud Groups,1,T1069,1
+ATT&CK,T1069.002,Discovery,Permission Groups Discovery: Domain Groups,1,T1069,1
+ATT&CK,T1069.001,Discovery,Permission Groups Discovery: Local Groups,1,T1069,1
+ATT&CK,T1566,Initial Access,Phishing,1,,0
+ATT&CK,T1598,Reconnaissance,Phishing for Information,1,,0
+ATT&CK,T1598.002,Reconnaissance,Phishing for Information: Spearphishing Attachment,1,T1598,1
+ATT&CK,T1598.003,Reconnaissance,Phishing for Information: Spearphishing Link,1,T1598,1
+ATT&CK,T1598.001,Reconnaissance,Phishing for Information: Spearphishing Service,1,T1598,1
+ATT&CK,T1566.001,Initial Access,Phishing: Spearphishing Attachment,1,T1566,1
+ATT&CK,T1566.002,Initial Access,Phishing: Spearphishing Link,1,T1566,1
+ATT&CK,T1566.003,Initial Access,Phishing: Spearphishing via Service,1,T1566,1
+ATT&CK,T1647,Defense Evasion,Plist File Modification,1,,0
+ATT&CK,T1542,"Defense Evasion, Persistence",Pre-OS Boot,1,,0
+ATT&CK,T1542.003,"Defense Evasion, Persistence",Pre-OS Boot: Bootkit,1,T1542,1
+ATT&CK,T1542.002,"Defense Evasion, Persistence",Pre-OS Boot: Component Firmware,1,T1542,1
+ATT&CK,T1542.004,"Defense Evasion, Persistence",Pre-OS Boot: ROMMONkit,1,T1542,1
+ATT&CK,T1542.001,"Defense Evasion, Persistence",Pre-OS Boot: System Firmware,1,T1542,1
+ATT&CK,T1542.005,"Defense Evasion, Persistence",Pre-OS Boot: TFTP Boot,1,T1542,1
+ATT&CK,T1057,Discovery,Process Discovery,1,,0
+ATT&CK,T1055,"Defense Evasion, Privilege Escalation",Process Injection,1,,0
+ATT&CK,T1055.004,"Defense Evasion, Privilege Escalation",Process Injection: Asynchronous Procedure Call,1,T1055,1
+ATT&CK,T1055.001,"Defense Evasion, Privilege Escalation",Process Injection: Dynamic-link Library Injection,1,T1055,1
+ATT&CK,T1055.011,"Defense Evasion, Privilege Escalation",Process Injection: Extra Window Memory Injection,1,T1055,1
+ATT&CK,T1055.015,"Defense Evasion, Privilege Escalation",Process Injection: ListPlanting,1,T1055,1
+ATT&CK,T1055.002,"Defense Evasion, Privilege Escalation",Process Injection: Portable Executable Injection,1,T1055,1
+ATT&CK,T1055.009,"Defense Evasion, Privilege Escalation",Process Injection: Proc Memory,1,T1055,1
+ATT&CK,T1055.013,"Defense Evasion, Privilege Escalation",Process Injection: Process Doppelgänging,1,T1055,1
+ATT&CK,T1055.012,"Defense Evasion, Privilege Escalation",Process Injection: Process Hollowing,1,T1055,1
+ATT&CK,T1055.008,"Defense Evasion, Privilege Escalation",Process Injection: Ptrace System Calls,1,T1055,1
+ATT&CK,T1055.003,"Defense Evasion, Privilege Escalation",Process Injection: Thread Execution Hijacking,1,T1055,1
+ATT&CK,T1055.005,"Defense Evasion, Privilege Escalation",Process Injection: Thread Local Storage,1,T1055,1
+ATT&CK,T1055.014,"Defense Evasion, Privilege Escalation",Process Injection: VDSO Hijacking,1,T1055,1
+ATT&CK,T1572,Command and Control,Protocol Tunneling,1,,0
+ATT&CK,T1090,Command and Control,Proxy,1,,0
+ATT&CK,T1090.004,Command and Control,Proxy: Domain Fronting,1,T1090,1
+ATT&CK,T1090.002,Command and Control,Proxy: External Proxy,1,T1090,1
+ATT&CK,T1090.001,Command and Control,Proxy: Internal Proxy,1,T1090,1
+ATT&CK,T1090.003,Command and Control,Proxy: Multi-hop Proxy,1,T1090,1
+ATT&CK,T1012,Discovery,Query Registry,1,,0
+ATT&CK,T1620,Defense Evasion,Reflective Code Loading,1,,0
+ATT&CK,T1219,Command and Control,Remote Access Software,1,,0
+ATT&CK,T1563,Lateral Movement,Remote Service Session Hijacking,1,,0
+ATT&CK,T1563.002,Lateral Movement,Remote Service Session Hijacking: RDP Hijacking,1,T1563,1
+ATT&CK,T1563.001,Lateral Movement,Remote Service Session Hijacking: SSH Hijacking,1,T1563,1
+ATT&CK,T1021,Lateral Movement,Remote Services,1,,0
+ATT&CK,T1021.007,Lateral Movement,Remote Services: Cloud Services,1,T1021,1
+ATT&CK,T1021.003,Lateral Movement,Remote Services: Distributed Component Object Model,1,T1021,1
+ATT&CK,T1021.001,Lateral Movement,Remote Services: Remote Desktop Protocol,1,T1021,1
+ATT&CK,T1021.002,Lateral Movement,Remote Services: SMB/Windows Admin Shares,1,T1021,1
+ATT&CK,T1021.004,Lateral Movement,Remote Services: SSH,1,T1021,1
+ATT&CK,T1021.005,Lateral Movement,Remote Services: VNC,1,T1021,1
+ATT&CK,T1021.006,Lateral Movement,Remote Services: Windows Remote Management,1,T1021,1
+ATT&CK,T1018,Discovery,Remote System Discovery,1,,0
+ATT&CK,T1091,"Initial Access, Lateral Movement",Replication Through Removable Media,1,,0
+ATT&CK,T1496,Impact,Resource Hijacking,1,,0
+ATT&CK,T1207,Defense Evasion,Rogue Domain Controller,1,,0
+ATT&CK,T1014,Defense Evasion,Rootkit,1,,0
+ATT&CK,T1053,"Execution, Persistence, Privilege Escalation",Scheduled Task/Job,1,,0
+ATT&CK,T1053.002,"Execution, Persistence, Privilege Escalation",Scheduled Task/Job: At,1,T1053,1
+ATT&CK,T1053.007,"Execution, Persistence, Privilege Escalation",Scheduled Task/Job: Container Orchestration Job,1,T1053,1
+ATT&CK,T1053.003,"Execution, Persistence, Privilege Escalation",Scheduled Task/Job: Cron,1,T1053,1
+ATT&CK,T1053.005,"Execution, Persistence, Privilege Escalation",Scheduled Task/Job: Scheduled Task,1,T1053,1
+ATT&CK,T1053.006,"Execution, Persistence, Privilege Escalation",Scheduled Task/Job: Systemd Timers,1,T1053,1
+ATT&CK,T1029,Exfiltration,Scheduled Transfer,1,,0
+ATT&CK,T1113,Collection,Screen Capture,1,,0
+ATT&CK,T1597,Reconnaissance,Search Closed Sources,1,,0
+ATT&CK,T1597.002,Reconnaissance,Search Closed Sources: Purchase Technical Data,1,T1597,1
+ATT&CK,T1597.001,Reconnaissance,Search Closed Sources: Threat Intel Vendors,1,T1597,1
+ATT&CK,T1596,Reconnaissance,Search Open Technical Databases,1,,0
+ATT&CK,T1596.004,Reconnaissance,Search Open Technical Databases: CDNs,1,T1596,1
+ATT&CK,T1596.001,Reconnaissance,Search Open Technical Databases: DNS/Passive DNS,1,T1596,1
+ATT&CK,T1596.003,Reconnaissance,Search Open Technical Databases: Digital Certificates,1,T1596,1
+ATT&CK,T1596.005,Reconnaissance,Search Open Technical Databases: Scan Databases,1,T1596,1
+ATT&CK,T1596.002,Reconnaissance,Search Open Technical Databases: WHOIS,1,T1596,1
+ATT&CK,T1593,Reconnaissance,Search Open Websites/Domains,1,,0
+ATT&CK,T1593.003,Reconnaissance,Search Open Websites/Domains: Code Repositories,1,T1593,1
+ATT&CK,T1593.002,Reconnaissance,Search Open Websites/Domains: Search Engines,1,T1593,1
+ATT&CK,T1593.001,Reconnaissance,Search Open Websites/Domains: Social Media,1,T1593,1
+ATT&CK,T1594,Reconnaissance,Search Victim-Owned Websites,1,,0
+ATT&CK,T1505,Persistence,Server Software Component,1,,0
+ATT&CK,T1505.004,Persistence,Server Software Component: IIS Components,1,T1505,1
+ATT&CK,T1505.001,Persistence,Server Software Component: SQL Stored Procedures,1,T1505,1
+ATT&CK,T1505.005,Persistence,Server Software Component: Terminal Services DLL,1,T1505,1
+ATT&CK,T1505.002,Persistence,Server Software Component: Transport Agent,1,T1505,1
+ATT&CK,T1505.003,Persistence,Server Software Component: Web Shell,1,T1505,1
+ATT&CK,T1648,Execution,Serverless Execution,1,,0
+ATT&CK,T1489,Impact,Service Stop,1,,0
+ATT&CK,T1129,Execution,Shared Modules,1,,0
+ATT&CK,T1072,"Execution, Lateral Movement",Software Deployment Tools,1,,0
+ATT&CK,T1518,Discovery,Software Discovery,1,,0
+ATT&CK,T1518.001,Discovery,Software Discovery: Security Software Discovery,1,T1518,1
+ATT&CK,T1608,Resource Development,Stage Capabilities,1,,0
+ATT&CK,T1608.004,Resource Development,Stage Capabilities: Drive-by Target,1,T1608,1
+ATT&CK,T1608.003,Resource Development,Stage Capabilities: Install Digital Certificate,1,T1608,1
+ATT&CK,T1608.005,Resource Development,Stage Capabilities: Link Target,1,T1608,1
+ATT&CK,T1608.006,Resource Development,Stage Capabilities: SEO Poisoning,1,T1608,1
+ATT&CK,T1608.001,Resource Development,Stage Capabilities: Upload Malware,1,T1608,1
+ATT&CK,T1608.002,Resource Development,Stage Capabilities: Upload Tool,1,T1608,1
+ATT&CK,T1528,Credential Access,Steal Application Access Token,1,,0
+ATT&CK,T1539,Credential Access,Steal Web Session Cookie,1,,0
+ATT&CK,T1649,Credential Access,Steal or Forge Authentication Certificates,1,,0
+ATT&CK,T1558,Credential Access,Steal or Forge Kerberos Tickets,1,,0
+ATT&CK,T1558.004,Credential Access,Steal or Forge Kerberos Tickets: AS-REP Roasting,1,T1558,1
+ATT&CK,T1558.001,Credential Access,Steal or Forge Kerberos Tickets: Golden Ticket,1,T1558,1
+ATT&CK,T1558.003,Credential Access,Steal or Forge Kerberos Tickets: Kerberoasting,1,T1558,1
+ATT&CK,T1558.002,Credential Access,Steal or Forge Kerberos Tickets: Silver Ticket,1,T1558,1
+ATT&CK,T1553,Defense Evasion,Subvert Trust Controls,1,,0
+ATT&CK,T1553.002,Defense Evasion,Subvert Trust Controls: Code Signing,1,T1553,1
+ATT&CK,T1553.006,Defense Evasion,Subvert Trust Controls: Code Signing Policy Modification,1,T1553,1
+ATT&CK,T1553.001,Defense Evasion,Subvert Trust Controls: Gatekeeper Bypass,1,T1553,1
+ATT&CK,T1553.004,Defense Evasion,Subvert Trust Controls: Install Root Certificate,1,T1553,1
+ATT&CK,T1553.005,Defense Evasion,Subvert Trust Controls: Mark-of-the-Web Bypass,1,T1553,1
+ATT&CK,T1553.003,Defense Evasion,Subvert Trust Controls: SIP and Trust Provider Hijacking,1,T1553,1
+ATT&CK,T1195,Initial Access,Supply Chain Compromise,1,,0
+ATT&CK,T1195.003,Initial Access,Supply Chain Compromise: Compromise Hardware Supply Chain,1,T1195,1
+ATT&CK,T1195.001,Initial Access,Supply Chain Compromise: Compromise Software Dependencies and Development Tools,1,T1195,1
+ATT&CK,T1195.002,Initial Access,Supply Chain Compromise: Compromise Software Supply Chain,1,T1195,1
+ATT&CK,T1218,Defense Evasion,System Binary Proxy Execution,1,,0
+ATT&CK,T1218.003,Defense Evasion,System Binary Proxy Execution: CMSTP,1,T1218,1
+ATT&CK,T1218.001,Defense Evasion,System Binary Proxy Execution: Compiled HTML File,1,T1218,1
+ATT&CK,T1218.002,Defense Evasion,System Binary Proxy Execution: Control Panel,1,T1218,1
+ATT&CK,T1218.004,Defense Evasion,System Binary Proxy Execution: InstallUtil,1,T1218,1
+ATT&CK,T1218.014,Defense Evasion,System Binary Proxy Execution: MMC,1,T1218,1
+ATT&CK,T1218.013,Defense Evasion,System Binary Proxy Execution: Mavinject,1,T1218,1
+ATT&CK,T1218.005,Defense Evasion,System Binary Proxy Execution: Mshta,1,T1218,1
+ATT&CK,T1218.007,Defense Evasion,System Binary Proxy Execution: Msiexec,1,T1218,1
+ATT&CK,T1218.008,Defense Evasion,System Binary Proxy Execution: Odbcconf,1,T1218,1
+ATT&CK,T1218.009,Defense Evasion,System Binary Proxy Execution: Regsvcs/Regasm,1,T1218,1
+ATT&CK,T1218.010,Defense Evasion,System Binary Proxy Execution: Regsvr32,1,T1218,1
+ATT&CK,T1218.011,Defense Evasion,System Binary Proxy Execution: Rundll32,1,T1218,1
+ATT&CK,T1218.012,Defense Evasion,System Binary Proxy Execution: Verclsid,1,T1218,1
+ATT&CK,T1082,Discovery,System Information Discovery,1,,0
+ATT&CK,T1614,Discovery,System Location Discovery,1,,0
+ATT&CK,T1614.001,Discovery,System Location Discovery: System Language Discovery,1,T1614,1
+ATT&CK,T1016,Discovery,System Network Configuration Discovery,1,,0
+ATT&CK,T1016.001,Discovery,System Network Configuration Discovery: Internet Connection Discovery,1,T1016,1
+ATT&CK,T1049,Discovery,System Network Connections Discovery,1,,0
+ATT&CK,T1033,Discovery,System Owner/User Discovery,1,,0
+ATT&CK,T1216,Defense Evasion,System Script Proxy Execution,1,,0
+ATT&CK,T1216.001,Defense Evasion,System Script Proxy Execution: PubPrn,1,T1216,1
+ATT&CK,T1007,Discovery,System Service Discovery,1,,0
+ATT&CK,T1569,Execution,System Services,1,,0
+ATT&CK,T1569.001,Execution,System Services: Launchctl,1,T1569,1
+ATT&CK,T1569.002,Execution,System Services: Service Execution,1,T1569,1
+ATT&CK,T1529,Impact,System Shutdown/Reboot,1,,0
+ATT&CK,T1124,Discovery,System Time Discovery,1,,0
+ATT&CK,T1080,Lateral Movement,Taint Shared Content,1,,0
+ATT&CK,T1221,Defense Evasion,Template Injection,1,,0
+ATT&CK,T1205,"Command and Control, Defense Evasion, Persistence",Traffic Signaling,1,,0
+ATT&CK,T1205.001,"Command and Control, Defense Evasion, Persistence",Traffic Signaling: Port Knocking,1,T1205,1
+ATT&CK,T1205.002,"Command and Control, Defense Evasion, Persistence",Traffic Signaling: Socket Filters,1,T1205,1
+ATT&CK,T1537,Exfiltration,Transfer Data to Cloud Account,1,,0
+ATT&CK,T1127,Defense Evasion,Trusted Developer Utilities Proxy Execution,1,,0
+ATT&CK,T1127.001,Defense Evasion,Trusted Developer Utilities Proxy Execution: MSBuild,1,T1127,1
+ATT&CK,T1199,Initial Access,Trusted Relationship,1,,0
+ATT&CK,T1552,Credential Access,Unsecured Credentials,1,,0
+ATT&CK,T1552.003,Credential Access,Unsecured Credentials: Bash History,1,T1552,1
+ATT&CK,T1552.008,Credential Access,Unsecured Credentials: Chat Messages,1,T1552,1
+ATT&CK,T1552.005,Credential Access,Unsecured Credentials: Cloud Instance Metadata API,1,T1552,1
+ATT&CK,T1552.007,Credential Access,Unsecured Credentials: Container API,1,T1552,1
+ATT&CK,T1552.001,Credential Access,Unsecured Credentials: Credentials In Files,1,T1552,1
+ATT&CK,T1552.002,Credential Access,Unsecured Credentials: Credentials in Registry,1,T1552,1
+ATT&CK,T1552.006,Credential Access,Unsecured Credentials: Group Policy Preferences,1,T1552,1
+ATT&CK,T1552.004,Credential Access,Unsecured Credentials: Private Keys,1,T1552,1
+ATT&CK,T1535,Defense Evasion,Unused/Unsupported Cloud Regions,1,,0
+ATT&CK,T1550,"Defense Evasion, Lateral Movement",Use Alternate Authentication Material,1,,0
+ATT&CK,T1550.001,"Defense Evasion, Lateral Movement",Use Alternate Authentication Material: Application Access Token,1,T1550,1
+ATT&CK,T1550.002,"Defense Evasion, Lateral Movement",Use Alternate Authentication Material: Pass the Hash,1,T1550,1
+ATT&CK,T1550.003,"Defense Evasion, Lateral Movement",Use Alternate Authentication Material: Pass the Ticket,1,T1550,1
+ATT&CK,T1550.004,"Defense Evasion, Lateral Movement",Use Alternate Authentication Material: Web Session Cookie,1,T1550,1
+ATT&CK,T1204,Execution,User Execution,1,,0
+ATT&CK,T1204.002,Execution,User Execution: Malicious File,1,T1204,1
+ATT&CK,T1204.003,Execution,User Execution: Malicious Image,1,T1204,1
+ATT&CK,T1204.001,Execution,User Execution: Malicious Link,1,T1204,1
+ATT&CK,T1078,"Defense Evasion, Initial Access, Persistence, Privilege Escalation",Valid Accounts,1,,0
+ATT&CK,T1078.004,"Defense Evasion, Initial Access, Persistence, Privilege Escalation",Valid Accounts: Cloud Accounts,1,T1078,1
+ATT&CK,T1078.001,"Defense Evasion, Initial Access, Persistence, Privilege Escalation",Valid Accounts: Default Accounts,1,T1078,1
+ATT&CK,T1078.002,"Defense Evasion, Initial Access, Persistence, Privilege Escalation",Valid Accounts: Domain Accounts,1,T1078,1
+ATT&CK,T1078.003,"Defense Evasion, Initial Access, Persistence, Privilege Escalation",Valid Accounts: Local Accounts,1,T1078,1
+ATT&CK,T1125,Collection,Video Capture,1,,0
+ATT&CK,T1497,"Defense Evasion, Discovery",Virtualization/Sandbox Evasion,1,,0
+ATT&CK,T1497.001,"Defense Evasion, Discovery",Virtualization/Sandbox Evasion: System Checks,1,T1497,1
+ATT&CK,T1497.003,"Defense Evasion, Discovery",Virtualization/Sandbox Evasion: Time Based Evasion,1,T1497,1
+ATT&CK,T1497.002,"Defense Evasion, Discovery",Virtualization/Sandbox Evasion: User Activity Based Checks,1,T1497,1
+ATT&CK,T1600,Defense Evasion,Weaken Encryption,1,,0
+ATT&CK,T1600.002,Defense Evasion,Weaken Encryption: Disable Crypto Hardware,1,T1600,1
+ATT&CK,T1600.001,Defense Evasion,Weaken Encryption: Reduce Key Space,1,T1600,1
+ATT&CK,T1102,Command and Control,Web Service,1,,0
+ATT&CK,T1102.002,Command and Control,Web Service: Bidirectional Communication,1,T1102,1
+ATT&CK,T1102.001,Command and Control,Web Service: Dead Drop Resolver,1,T1102,1
+ATT&CK,T1102.003,Command and Control,Web Service: One-Way Communication,1,T1102,1
+ATT&CK,T1047,Execution,Windows Management Instrumentation,1,,0
+ATT&CK,T1220,Defense Evasion,XSL Script Processing,1,,0
+D3FEND,D3-AI,Model,Asset Inventory,1,,0
+D3FEND,D3-CI,Model,Configuration Inventory,1,D3-AI,1
+D3FEND,D3-DI,Model,Data Inventory,1,D3-AI,1
+D3FEND,D3-SWI,Model,Software Inventory,1,D3-AI,1
+D3FEND,D3-AVE,Model,Asset Vulnerability Enumeration,1,D3-AI,1
+D3FEND,D3-NNI,Model,Network Node Inventory,1,D3-AI,1
+D3FEND,D3-HCI,Model,Hardware Component Inventory,1,D3-AI,1
+D3FEND,D3-NM,Model,Network Mapping,1,,0
+D3FEND,D3-LLM,Model,Logical Link Mapping,1,D3-NM,1
+D3FEND,D3-ALLM,Model,Active Logical Link Mapping,1,D3-LLM,2
+D3FEND,D3-PLLM,Model,Passive Logical Link Mapping,1,D3-LLM,2
+D3FEND,D3-NVA,Model,Network Vulnerability Assessment,1,D3-NM,1
+D3FEND,D3-PLM,Model,Physical Link Mapping,1,D3-NM,1
+D3FEND,D3-APLM,Model,Active Physical Link Mapping,1,D3-PLM,2
+D3FEND,D3-PPLM,Model,Passive Physical Link Mapping,1,D3-PLM,2
+D3FEND,D3-NTPM,Model,Network Traffic Policy Mapping,1,D3-NM,1
+D3FEND,D3-OAM,Model,Operational Activity Mapping,1,,0
+D3FEND,D3-AM,Model,Access Modeling,1,D3-OAM,1
+D3FEND,D3-ODM,Model,Operational Dependency Mapping,1,D3-OAM,1
+D3FEND,D3-ORA,Model,Operational Risk Assessment,1,D3-OAM,1
+D3FEND,D3-OM,Model,Organization Mapping,1,D3-OAM,1
+D3FEND,D3-SYSM,Model,System Mapping,1,,0
+D3FEND,D3-DEM,Model,Data Exchange Mapping,1,D3-SYSM,1
+D3FEND,D3-SVCDM,Model,Service Dependency Mapping,1,D3-SYSM,1
+D3FEND,D3-SYSDM,Model,System Dependency Mapping,1,D3-SYSM,1
+D3FEND,D3-SYSVA,Model,System Vulnerability Assessment,1,D3-SYSM,1
+D3FEND,D3-MH,Harden,Message Hardening,1,,0
+D3FEND,D3-MAN,Harden,Message Authentication,1,D3-MH,1
+D3FEND,D3-MENCR,Harden,Message Encryption,1,D3-MH,1
+D3FEND,D3-TAAN,Harden,Transfer Agent Authentication,1,D3-MH,1
+D3FEND,D3-CH,Harden,Credential Hardening,1,,0
+D3FEND,D3-BAN,Harden,Biometric Authentication,1,D3-CH,1
+D3FEND,D3-CBAN,Harden,Certificate-based Authentication,1,D3-CH,1
+D3FEND,D3-CP,Harden,Certificate Pinning,1,D3-CH,1
+D3FEND,D3-CTS,Harden,Credential Transmission Scoping,1,D3-CH,1
+D3FEND,D3-DTP,Harden,Domain Trust Policy,1,D3-CH,1
+D3FEND,D3-MFA,Harden,Multi-factor Authentication,1,D3-CH,1
+D3FEND,D3-OTP,Harden,One-time Password,1,D3-CH,1
+D3FEND,D3-SPP,Harden,Strong Password Policy,1,D3-CH,1
+D3FEND,D3-UAP,Harden,User Account Permissions,1,D3-CH,1
+D3FEND,D3-PH,Harden,Platform Hardening,1,,0
+D3FEND,D3-BA,Harden,Bootloader Authentication,1,D3-PH,1
+D3FEND,D3-DENCR,Harden,Disk Encryption,1,D3-PH,1
+D3FEND,D3-DLIC,Harden,Driver Load Integrity Checking,1,D3-PH,1
+D3FEND,D3-FE,Harden,File Encryption,1,D3-PH,1
+D3FEND,D3-LFP,Harden,Local File Permissions,1,D3-PH,1
+D3FEND,D3-RFS,Harden,RF Shielding,1,D3-PH,1
+D3FEND,D3-SU,Harden,Software Update,1,D3-PH,1
+D3FEND,D3-SCP,Harden,System Configuration Permissions,1,D3-PH,1
+D3FEND,D3-TBI,Harden,TPM Boot Integrity,1,D3-PH,1
+D3FEND,D3-AH,Harden,Application Hardening,1,,0
+D3FEND,D3-ACH,Harden,Application Configuration Hardening,1,D3-AH,1
+D3FEND,D3-DCE,Harden,Dead Code Elimination,1,D3-AH,1
+D3FEND,D3-EHPV,Harden,Exception Handler Pointer Validation,1,D3-AH,1
+D3FEND,D3-PAN,Harden,Pointer Authentication,1,D3-AH,1
+D3FEND,D3-PSEP,Harden,Process Segment Execution Prevention,1,D3-AH,1
+D3FEND,D3-SAOR,Harden,Segment Address Offset Randomization,1,D3-AH,1
+D3FEND,D3-SFCV,Harden,Stack Frame Canary Validation,1,D3-AH,1
+D3FEND,D3-NTA,Detect,Network Traffic Analysis,1,,0
+D3FEND,D3-ANAA,Detect,Administrative Network Activity Analysis,1,D3-NTA,1
+D3FEND,D3-BSE,Detect,Byte Sequence Emulation,1,D3-NTA,1
+D3FEND,D3-CA,Detect,Certificate Analysis,1,D3-NTA,1
+D3FEND,D3-ACA,Detect,Active Certificate Analysis,1,D3-CA,2
+D3FEND,D3-PCA,Detect,Passive Certificate Analysis,1,D3-CA,2
+D3FEND,D3-CSPP,Detect,Client-server Payload Profiling,1,D3-NTA,1
+D3FEND,D3-CAA,Detect,Connection Attempt Analysis,1,D3-NTA,1
+D3FEND,D3-DNSTA,Detect,DNS Traffic Analysis,1,D3-NTA,1
+D3FEND,D3-FC,Detect,File Carving,1,D3-NTA,1
+D3FEND,D3-ISVA,Detect,Inbound Session Volume Analysis,1,D3-NTA,1
+D3FEND,D3-IPCTA,Detect,IPC Traffic Analysis,1,D3-NTA,1
+D3FEND,D3-NTCD,Detect,Network Traffic Community Deviation,1,D3-NTA,1
+D3FEND,D3-PHDURA,Detect,Per Host Download-Upload Ratio Analysis,1,D3-NTA,1
+D3FEND,D3-PMAD,Detect,Protocol Metadata Anomaly Detection,1,D3-NTA,1
+D3FEND,D3-RPA,Detect,Relay Pattern Analysis,1,D3-NTA,1
+D3FEND,D3-RTSD,Detect,Remote Terminal Session Detection,1,D3-NTA,1
+D3FEND,D3-RTA,Detect,RPC Traffic Analysis,1,D3-NTA,1
+D3FEND,D3-PM,Detect,Platform Monitoring,1,,0
+D3FEND,D3-FBA,Detect,Firmware Behavior Analysis,1,D3-PM,1
+D3FEND,D3-FEMC,Detect,Firmware Embedded Monitoring Code,1,D3-PM,1
+D3FEND,D3-FV,Detect,Firmware Verification,1,D3-PM,1
+D3FEND,D3-PFV,Detect,Peripheral Firmware Verification,1,D3-FV,2
+D3FEND,D3-SFV,Detect,System Firmware Verification,1,D3-FV,2
+D3FEND,D3-OSM,Detect,Operating System Monitoring,1,D3-PM,1
+D3FEND,D3-EHB,Detect,Endpoint Health Beacon,1,D3-OSM,2
+D3FEND,D3-IDA,Detect,Input Device Analysis,1,D3-OSM,2
+D3FEND,D3-MBT,Detect,Memory Boundary Tracking,1,D3-OSM,2
+D3FEND,D3-SJA,Detect,Scheduled Job Analysis,1,D3-OSM,2
+D3FEND,D3-SDM,Detect,System Daemon Monitoring,1,D3-OSM,2
+D3FEND,D3-SFA,Detect,System File Analysis,1,D3-OSM,2
+D3FEND,D3-SBV,Detect,Service Binary Verification,1,D3-OSM,2
+D3FEND,D3-SICA,Detect,System Init Config Analysis,1,D3-OSM,2
+D3FEND,D3-USICA,Detect,User Session Init Config Analysis,1,D3-OSM,2
+D3FEND,D3-PA,Detect,Process Analysis,1,,0
+D3FEND,D3-DQSA,Detect,Database Query String Analysis,1,D3-PA,1
+D3FEND,D3-FAPA,Detect,File Access Pattern Analysis,1,D3-PA,1
+D3FEND,D3-IBCA,Detect,Indirect Branch Call Analysis,1,D3-PA,1
+D3FEND,D3-PCSV,Detect,Process Code Segment Verification,1,D3-PA,1
+D3FEND,D3-PSMD,Detect,Process Self-Modification Detection,1,D3-PA,1
+D3FEND,D3-PSA,Detect,Process Spawn Analysis,1,D3-PA,1
+D3FEND,D3-PLA,Detect,Process Lineage Analysis,1,D3-PSA,2
+D3FEND,D3-SEA,Detect,Script Execution Analysis,1,D3-PA,1
+D3FEND,D3-SSC,Detect,Shadow Stack Comparisons,1,D3-PA,1
+D3FEND,D3-SCA,Detect,System Call Analysis,1,D3-PA,1
+D3FEND,D3-FCA,Detect,File Creation Analysis,1,D3-SCA,2
+D3FEND,D3-MA,Detect,Message Analysis,1,,0
+D3FEND,D3-SMRA,Detect,Sender MTA Reputation Analysis,1,D3-MA,1
+D3FEND,D3-SRA,Detect,Sender Reputation Analysis,1,D3-MA,1
+D3FEND,D3-ID,Detect,Identifier Analysis,1,,0
+D3FEND,D3-HD,Detect,Homoglyph Detection,1,D3-ID,1
+D3FEND,D3-UA,Detect,URL Analysis,1,D3-ID,1
+D3FEND,D3-IRA,Detect,Identifier Reputation Analysis,1,D3-ID,1
+D3FEND,D3-DNRA,Detect,Domain Name Reputation Analysis,1,D3-IRA,2
+D3FEND,D3-FHRA,Detect,File Hash Reputation Analysis,1,D3-IRA,2
+D3FEND,D3-IPRA,Detect,IP Reputation Analysis,1,D3-IRA,2
+D3FEND,D3-URA,Detect,URL Reputation Analysis,1,D3-IRA,2
+D3FEND,D3-IAA,Detect,Identifier Activity Analysis,1,D3-ID,1
+D3FEND,D3-UBA,Detect,User Behavior Analysis,1,,0
+D3FEND,D3-ANET,Detect,Authentication Event Thresholding,1,D3-UBA,1
+D3FEND,D3-AZET,Detect,Authorization Event Thresholding,1,D3-UBA,1
+D3FEND,D3-CCSA,Detect,Credential Compromise Scope Analysis,1,D3-UBA,1
+D3FEND,D3-DAM,Detect,Domain Account Monitoring,1,D3-UBA,1
+D3FEND,D3-JFAPA,Detect,Job Function Access Pattern Analysis,1,D3-UBA,1
+D3FEND,D3-LAM,Detect,Local Account Monitoring,1,D3-UBA,1
+D3FEND,D3-RAPA,Detect,Resource Access Pattern Analysis,1,D3-UBA,1
+D3FEND,D3-SDA,Detect,Session Duration Analysis,1,D3-UBA,1
+D3FEND,D3-UDTA,Detect,User Data Transfer Analysis,1,D3-UBA,1
+D3FEND,D3-UGLPA,Detect,User Geolocation Logon Pattern Analysis,1,D3-UBA,1
+D3FEND,D3-WSAA,Detect,Web Session Activity Analysis,1,D3-UBA,1
+D3FEND,D3-FA,Detect,File Analysis,1,,0
+D3FEND,D3-DA,Detect,Dynamic Analysis,1,D3-FA,1
+D3FEND,D3-EFA,Detect,Emulated File Analysis,1,D3-FA,1
+D3FEND,D3-FCR,Detect,File Content Rules,1,D3-FA,1
+D3FEND,D3-FH,Detect,File Hashing,1,D3-FA,1
+D3FEND,D3-NI,Isolate,Network Isolation,1,,0
+D3FEND,D3-BDI,Isolate,Broadcast Domain Isolation,1,D3-NI,1
+D3FEND,D3-DNSAL,Isolate,DNS Allowlisting,1,D3-NI,1
+D3FEND,D3-DNSDL,Isolate,DNS Denylisting,1,D3-NI,1
+D3FEND,D3-FRDDL,Isolate,Forward Resolution Domain Denylisting,1,D3-DNSDL,2
+D3FEND,D3-HDDL,Isolate,Hierarchical Domain Denylisting,1,D3-DNSDL,2
+D3FEND,D3-HDL,Isolate,Homoglyph Denylisting,1,D3-DNSDL,2
+D3FEND,D3-FRIDL,Isolate,Forward Resolution IP Denylisting,1,D3-DNSDL,2
+D3FEND,D3-RRDD,Isolate,Reverse Resolution Domain Denylisting,1,D3-DNSDL,2
+D3FEND,D3-RRID,Isolate,Reverse Resolution IP Denylisting,1,D3-DNSDL,2
+D3FEND,D3-ET,Isolate,Encrypted Tunnels,1,D3-NI,1
+D3FEND,D3-NTF,Isolate,Network Traffic Filtering,1,D3-NI,1
+D3FEND,D3-ITF,Isolate,Inbound Traffic Filtering,1,D3-NTF,2
+D3FEND,D3-OTF,Isolate,Outbound Traffic Filtering,1,D3-NTF,2
+D3FEND,D3-EI,Isolate,Execution Isolation,1,,0
+D3FEND,D3-EAL,Isolate,Executable Allowlisting,1,D3-EI,1
+D3FEND,D3-EDL,Isolate,Executable Denylisting,1,D3-EI,1
+D3FEND,D3-HBPI,Isolate,Hardware-based Process Isolation,1,D3-EI,1
+D3FEND,D3-IOPR,Isolate,IO Port Restriction,1,D3-EI,1
+D3FEND,D3-KBPI,Isolate,Kernel-based Process Isolation,1,D3-EI,1
+D3FEND,D3-MAC,Isolate,Mandatory Access Control,1,D3-KBPI,2
+D3FEND,D3-SCF,Isolate,System Call Filtering,1,D3-KBPI,2
+D3FEND,D3-DE,Deceive,Decoy Environment,1,,0
+D3FEND,D3-CHN,Deceive,Connected Honeynet,1,D3-DE,1
+D3FEND,D3-IHN,Deceive,Integrated Honeynet,1,D3-DE,1
+D3FEND,D3-SHN,Deceive,Standalone Honeynet,1,D3-DE,1
+D3FEND,D3-DO,Deceive,Decoy Object,1,,0
+D3FEND,D3-DF,Deceive,Decoy File,1,D3-DO,1
+D3FEND,D3-DNR,Deceive,Decoy Network Resource,1,D3-DO,1
+D3FEND,D3-DP,Deceive,Decoy Persona,1,D3-DO,1
+D3FEND,D3-DPR,Deceive,Decoy Public Release,1,D3-DO,1
+D3FEND,D3-DST,Deceive,Decoy Session Token,1,D3-DO,1
+D3FEND,D3-DUC,Deceive,Decoy User Credential,1,D3-DO,1
+D3FEND,D3-FEV,Evict,File Eviction,1,,0
+D3FEND,D3-FR,Evict,File Removal,1,D3-FEV,1
+D3FEND,D3-ER,Evict,Email Removal,1,D3-FR,2
+D3FEND,D3-CE,Evict,Credential Eviction,1,,0
+D3FEND,D3-AL,Evict,Account Locking,1,D3-CE,1
+D3FEND,D3-ANCI,Evict,Authentication Cache Invalidation,1,D3-CE,1
+D3FEND,D3-CR,Evict,Credential Revoking,1,D3-CE,1
+D3FEND,D3-PE,Evict,Process Eviction,1,,0
+D3FEND,D3-PT,Evict,Process Termination,1,D3-PE,1
+D3FEND,D3-PS,Evict,Process Suspension,1,D3-PE,1
