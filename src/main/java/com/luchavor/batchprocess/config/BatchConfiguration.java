@@ -1,4 +1,4 @@
-package com.luchavor.batchprocess.configuration;
+package com.luchavor.batchprocess.config;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.web.client.RestTemplate;
+import com.luchavor.batchprocess.listener.ExecutionListener;
 import com.luchavor.batchprocess.model.Technique;
 import com.luchavor.batchprocess.model.TechniqueType;
 import com.luchavor.batchprocess.processor.TechniqueProcessor;
@@ -54,24 +55,16 @@ public class BatchConfiguration {
 
 	// tag::jobstep[]
 	@Bean
-	Job importTechniqueJob(JobRepository jobRepository, Step importTechniquesStep, Step importCompositesStep) {
+	Job importTechniqueJob(JobRepository jobRepository, ExecutionListener executionListener, Step importTechniquesStep, Step importCompositesStep) {
 		return new JobBuilder("importTechniqueJob", jobRepository)
 			.incrementer(new RunIdIncrementer())
+			.listener(executionListener)
 			.start(importTechniquesStep)
 			.next(importCompositesStep)
 			.build();
 	}
 	
-	@Bean
-	Step importCompositesStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
-		return new StepBuilder("importCompositesStep", jobRepository)
-			.<Technique, Technique> chunk(50, transactionManager)
-			.reader(reader())
-			.processor(new TechniqueProcessor(TechniqueType.COMPOSITE))
-			.writer(compositeWriter())
-			.build();
-	}
-	
+	// import single techniques
 	@Bean
 	Step importTechniquesStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
 		return new StepBuilder("importTechniquesStep", jobRepository)
@@ -79,6 +72,17 @@ public class BatchConfiguration {
 			.reader(reader())
 			.processor(new TechniqueProcessor(TechniqueType.SINGLE))
 			.writer(techniqueWriter())
+			.build();
+	}
+	
+	// import composite techniques
+	@Bean
+	Step importCompositesStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
+		return new StepBuilder("importCompositesStep", jobRepository)
+			.<Technique, Technique> chunk(200, transactionManager)
+			.reader(reader())
+			.processor(new TechniqueProcessor(TechniqueType.COMPOSITE))
+			.writer(compositeWriter())
 			.build();
 	}
 	// end::jobstep[]

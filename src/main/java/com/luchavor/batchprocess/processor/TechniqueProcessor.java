@@ -3,16 +3,10 @@ package com.luchavor.batchprocess.processor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.item.ItemProcessor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
-
 import com.luchavor.batchprocess.model.Technique;
 import com.luchavor.batchprocess.model.TechniqueType;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 public class TechniqueProcessor implements ItemProcessor<Technique, Technique> {
@@ -23,7 +17,7 @@ public class TechniqueProcessor implements ItemProcessor<Technique, Technique> {
 	
 	@Override
 	public Technique process(final Technique technique) throws Exception {		
-		// return techniques that match the given type (simple or composite)
+		// return only techniques that match the given type (simple or composite)
 		if(technique.getType().toUpperCase().equals(techniqueType.toString())) {
 			return technique;
 		} else {
