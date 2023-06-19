@@ -57,15 +57,15 @@ public class BatchConfiguration {
 	Job importTechniqueJob(JobRepository jobRepository, Step importTechniquesStep, Step importCompositesStep) {
 		return new JobBuilder("importTechniqueJob", jobRepository)
 			.incrementer(new RunIdIncrementer())
-			.start(importCompositesStep)
-			.next(importTechniquesStep)
+			.start(importTechniquesStep)
+			.next(importCompositesStep)
 			.build();
 	}
 	
 	@Bean
 	Step importCompositesStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
 		return new StepBuilder("importCompositesStep", jobRepository)
-			.<Technique, Technique> chunk(10, transactionManager)
+			.<Technique, Technique> chunk(50, transactionManager)
 			.reader(reader())
 			.processor(new TechniqueProcessor(TechniqueType.COMPOSITE))
 			.writer(compositeWriter())
@@ -75,7 +75,7 @@ public class BatchConfiguration {
 	@Bean
 	Step importTechniquesStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
 		return new StepBuilder("importTechniquesStep", jobRepository)
-			.<Technique, Technique> chunk(10, transactionManager)
+			.<Technique, Technique> chunk(100, transactionManager)
 			.reader(reader())
 			.processor(new TechniqueProcessor(TechniqueType.SINGLE))
 			.writer(techniqueWriter())
