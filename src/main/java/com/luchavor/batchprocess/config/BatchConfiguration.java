@@ -76,56 +76,56 @@ public class BatchConfiguration {
 	// end::readerwriterprocessor[]
 
 	// tag::importTechniquesJob[]
-//	@Bean
-//	Job importTechniqueJob(JobRepository jobRepository, ExecutionListener executionListener, Step importTechniquesStep, Step importCompositesStep) {
-//		return new JobBuilder("importTechniqueJob", jobRepository)
-//			.incrementer(new RunIdIncrementer())
-//			.listener(executionListener)
-//			.start(importTechniquesStep)
-//			.next(importCompositesStep)
-//			.build();
-//	}
-//	
-//	// import single techniques
-//	@Bean
-//	Step importTechniquesStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
-//		return new StepBuilder("importTechniquesStep", jobRepository)
-//			.<Technique, Technique> chunk(100, transactionManager)
-//			.reader(reader())
-//			.processor(new TechniqueProcessor(TechniqueType.SINGLE))
-//			.writer(techniqueWriter())
-//			.build();
-//	}
-//	
-//	// import composite techniques
-//	@Bean
-//	Step importCompositesStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
-//		return new StepBuilder("importCompositesStep", jobRepository)
-//			.<Technique, Technique> chunk(200, transactionManager)
-//			.reader(reader())
-//			.processor(new TechniqueProcessor(TechniqueType.COMPOSITE))
-//			.writer(compositeWriter())
-//			.build();
-//	}
-	// end::importTechniquesJob[]
-	
-	// tag::importZeekEventsJob[]
 	@Bean
-	Job importZeekEventsJob(JobRepository jobRepository, Step importConnLogStep) {
-		return new JobBuilder("importZeekEventsJob", jobRepository)
+	Job importTechniqueJob(JobRepository jobRepository, ExecutionListener executionListener, Step importTechniquesStep, Step importCompositesStep) {
+		return new JobBuilder("importTechniqueJob", jobRepository)
 			.incrementer(new RunIdIncrementer())
-			.start(importConnLogStep)
+			.listener(executionListener)
+			.start(importTechniquesStep)
+			.next(importCompositesStep)
 			.build();
 	}
 	
-	// import conn log events
+	// import single techniques
 	@Bean
-	Step importConnLogStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
-		return new StepBuilder("importConnLogStep", jobRepository)
-			.<ZeekEvent, ZeekEvent> chunk(10, transactionManager)
-			.reader(zeekLogReader())
+	Step importTechniquesStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
+		return new StepBuilder("importTechniquesStep", jobRepository)
+			.<Technique, Technique> chunk(100, transactionManager)
+			.reader(reader())
+			.processor(new TechniqueProcessor(TechniqueType.SINGLE))
 			.writer(techniqueWriter())
 			.build();
 	}
+	
+	// import composite techniques
+	@Bean
+	Step importCompositesStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
+		return new StepBuilder("importCompositesStep", jobRepository)
+			.<Technique, Technique> chunk(200, transactionManager)
+			.reader(reader())
+			.processor(new TechniqueProcessor(TechniqueType.COMPOSITE))
+			.writer(compositeWriter())
+			.build();
+	}
+	// end::importTechniquesJob[]
+	
+	// tag::importZeekEventsJob[]
+//	@Bean
+//	Job importZeekEventsJob(JobRepository jobRepository, Step importConnLogStep) {
+//		return new JobBuilder("importZeekEventsJob", jobRepository)
+//			.incrementer(new RunIdIncrementer())
+//			.start(importConnLogStep)
+//			.build();
+//	}
+//	
+//	// import conn log events
+//	@Bean
+//	Step importConnLogStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
+//		return new StepBuilder("importConnLogStep", jobRepository)
+//			.<ZeekEvent, ZeekEvent> chunk(10, transactionManager)
+//			.reader(zeekLogReader())
+//			.writer(techniqueWriter())
+//			.build();
+//	}
 	// end::importZeekEventsJob[]
 }
