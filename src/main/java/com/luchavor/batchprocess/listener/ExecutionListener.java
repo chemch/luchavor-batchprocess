@@ -22,7 +22,7 @@ public class ExecutionListener implements JobExecutionListener {
 	public void beforeJob(JobExecution jobExecution) {
 		log.info("ExecutionListener Removing Technique Data Before Job");
 		// build url
-		String url = String.format("http://localhost:7000/batch/technique");
+		String url = "http://localhost:7000/batch/technique".formatted();
 		// delete data using url
 		restTemplate.delete(url);		
 	}
@@ -33,7 +33,7 @@ public class ExecutionListener implements JobExecutionListener {
 		if(jobExecution.getStatus() == BatchStatus.COMPLETED) {
 			log.info("ExecutionListener Calling API to Build Technique Relations");
 			// build url
-			String url =  String.format("http://localhost:7000/relation/technique");
+			String url =  "http://localhost:7000/relation/technique".formatted();
 			// post to create 
 			ResponseEntity<String> response = restTemplate.postForEntity(url, null, String.class);
 			// check status code (should be 201)

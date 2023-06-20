@@ -24,10 +24,10 @@ public class RestApiWriter<Technique> implements ItemWriter<Object> {
 	public void write(Chunk<?> chunk) throws Exception {
 		log.info("RestApiWriter Posting Chunk of Items: " + chunk.toString());
 		// build url
-		String url =  String.format("http://localhost:7000/batch/%s-technique", techniqueType.toString().toLowerCase());
+		String url =  "http://localhost:7000/batch/%s-technique".formatted(techniqueType.toString().toLowerCase());
 		// post to create 
 		ResponseEntity<String> response = restTemplate.postForEntity(url, chunk.getItems(), String.class);
-		// check status code (should be 201)
+		// check status code (should be 2xx)
 		if(!response.getStatusCode().is2xxSuccessful())
 			log.error(response.getBody());
 	}
