@@ -11,7 +11,7 @@ import com.luchavor.batchprocess.model.TechniqueType;
 import lombok.Data;
 
 @Data
-public class RestApiWriter<SingleTechnique> implements ItemWriter<Object> {
+public class RestApiWriter<Technique> implements ItemWriter<Object> {
 	
 	@Autowired
 	RestTemplate restTemplate;
