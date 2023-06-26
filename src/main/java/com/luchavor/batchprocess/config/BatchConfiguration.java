@@ -17,11 +17,11 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.web.client.RestTemplate;
 import com.luchavor.batchprocess.listener.ExecutionListener;
-import com.luchavor.batchprocess.model.Technique;
-import com.luchavor.batchprocess.model.TechniqueType;
 import com.luchavor.batchprocess.model.ZeekEvent;
 import com.luchavor.batchprocess.processor.TechniqueProcessor;
 import com.luchavor.batchprocess.writer.RestApiWriter;
+import com.luchavor.datamodel.technique.InputTechnique;
+import com.luchavor.datamodel.technique.TechniqueType;
 
 @Configuration
 public class BatchConfiguration {
@@ -33,13 +33,13 @@ public class BatchConfiguration {
 
 	// tag::readerwriterprocessor[]
 	@Bean
-	FlatFileItemReader<Technique> reader() {
-		return new FlatFileItemReaderBuilder<Technique>()
+	FlatFileItemReader<InputTechnique> reader() {
+		return new FlatFileItemReaderBuilder<InputTechnique>()
 			.name("techniqueReader")
 			.resource(new ClassPathResource("technique-data.csv"))
 			.delimited()
 			.names(new String[]{"model", "mitreId", "tactic", "name", "description", "parentMitreId", "treeLevel", "type"})
-			.fieldSetMapper(new BeanWrapperFieldSetMapper<Technique>() {{ setTargetType(Technique.class); }})
+			.fieldSetMapper(new BeanWrapperFieldSetMapper<InputTechnique>() {{ setTargetType(InputTechnique.class); }})
 			.linesToSkip(1) // skip top line which has headers
 			.build();
 	}
@@ -58,21 +58,19 @@ public class BatchConfiguration {
 	}
 	
 	@Bean
-	RestApiWriter<Technique> techniqueWriter() {
-		return new RestApiWriter<Technique>(TechniqueType.SINGLE);
+	RestApiWriter<InputTechnique> techniqueWriter() {
+		return new RestApiWriter<InputTechnique>(TechniqueType.SINGLE);
 	}
 	
 	@Bean
-	RestApiWriter<Technique> compositeWriter() {
-		return new RestApiWriter<Technique>(TechniqueType.COMPOSITE);
+	RestApiWriter<InputTechnique> compositeWriter() {
+		return new RestApiWriter<InputTechnique>(TechniqueType.COMPOSITE);
 	}
 	
 	@Bean
 	RestApiWriter<ZeekEvent> zeekEventWriter() {
 		return new RestApiWriter<ZeekEvent>(TechniqueType.COMPOSITE);
 	}
-	
-	
 	// end::readerwriterprocessor[]
 
 	// tag::importTechniquesJob[]
@@ -90,7 +88,7 @@ public class BatchConfiguration {
 	@Bean
 	Step importTechniquesStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
 		return new StepBuilder("importTechniquesStep", jobRepository)
-			.<Technique, Technique> chunk(100, transactionManager)
+			.<InputTechnique, InputTechnique> chunk(100, transactionManager)
 			.reader(reader())
 			.processor(new TechniqueProcessor(TechniqueType.SINGLE))
 			.writer(techniqueWriter())
@@ -101,7 +99,7 @@ public class BatchConfiguration {
 	@Bean
 	Step importCompositesStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
 		return new StepBuilder("importCompositesStep", jobRepository)
-			.<Technique, Technique> chunk(200, transactionManager)
+			.<InputTechnique, InputTechnique> chunk(200, transactionManager)
 			.reader(reader())
 			.processor(new TechniqueProcessor(TechniqueType.COMPOSITE))
 			.writer(compositeWriter())

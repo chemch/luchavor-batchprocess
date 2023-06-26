@@ -7,7 +7,9 @@ import org.springframework.batch.item.ItemWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
-import com.luchavor.batchprocess.model.TechniqueType;
+
+import com.luchavor.datamodel.technique.TechniqueType;
+
 import lombok.Data;
 
 @Data

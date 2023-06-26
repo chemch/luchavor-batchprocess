@@ -20,7 +20,7 @@ public class ExecutionListener implements JobExecutionListener {
 	// call api to delete all technique objects in the neo4j db before starting
 	@Override
 	public void beforeJob(JobExecution jobExecution) {
-		log.info("ExecutionListener Removing Technique Data Before Job");
+		log.info("ExecutionListener Removing InputTechnique Data Before Job");
 		// build url
 		String url = "http://localhost:7000/batch/technique".formatted();
 		// delete data using url
@@ -31,7 +31,7 @@ public class ExecutionListener implements JobExecutionListener {
 	@Override
 	public void afterJob(JobExecution jobExecution) {
 		if(jobExecution.getStatus() == BatchStatus.COMPLETED) {
-			log.info("ExecutionListener Calling API to Build Technique Relations");
+			log.info("ExecutionListener Calling API to Build InputTechnique Relations"); 
 			// build url
 			String url =  "http://localhost:7000/relation/technique".formatted();
 			// post to create 
