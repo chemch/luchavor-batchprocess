@@ -20,7 +20,7 @@ import com.luchavor.batchprocess.listener.ExecutionListener;
 import com.luchavor.batchprocess.model.ZeekEvent;
 import com.luchavor.batchprocess.processor.TechniqueProcessor;
 import com.luchavor.batchprocess.writer.RestApiWriter;
-import com.luchavor.datamodel.technique.InputTechnique;
+import com.luchavor.datamodel.technique.ImportTechniqueItem;
 import com.luchavor.datamodel.technique.TechniqueType;
 
 @Configuration
@@ -33,13 +33,13 @@ public class BatchConfiguration {
 
 	// tag::readerwriterprocessor[]
 	@Bean
-	FlatFileItemReader<InputTechnique> reader() {
-		return new FlatFileItemReaderBuilder<InputTechnique>()
+	FlatFileItemReader<ImportTechniqueItem> reader() {
+		return new FlatFileItemReaderBuilder<ImportTechniqueItem>()
 			.name("techniqueReader")
 			.resource(new ClassPathResource("technique-data.csv"))
 			.delimited()
-			.names(new String[]{"model", "mitreId", "tactic", "name", "description", "parentMitreId", "treeLevel", "type"})
-			.fieldSetMapper(new BeanWrapperFieldSetMapper<InputTechnique>() {{ setTargetType(InputTechnique.class); }})
+			.names(new String[]{"model", "subModel", "mitreId", "tactic", "name", "description", "parentMitreId", "treeLevel", "type"})
+			.fieldSetMapper(new BeanWrapperFieldSetMapper<ImportTechniqueItem>() {{ setTargetType(ImportTechniqueItem.class); }})
 			.linesToSkip(1) // skip top line which has headers
 			.build();
 	}
@@ -58,13 +58,13 @@ public class BatchConfiguration {
 	}
 	
 	@Bean
-	RestApiWriter<InputTechnique> techniqueWriter() {
-		return new RestApiWriter<InputTechnique>(TechniqueType.SINGLE);
+	RestApiWriter<ImportTechniqueItem> techniqueWriter() {
+		return new RestApiWriter<ImportTechniqueItem>(TechniqueType.SINGLE);
 	}
 	
 	@Bean
-	RestApiWriter<InputTechnique> compositeWriter() {
-		return new RestApiWriter<InputTechnique>(TechniqueType.COMPOSITE);
+	RestApiWriter<ImportTechniqueItem> compositeWriter() {
+		return new RestApiWriter<ImportTechniqueItem>(TechniqueType.COMPOSITE);
 	}
 	
 	@Bean
@@ -88,7 +88,7 @@ public class BatchConfiguration {
 	@Bean
 	Step importTechniquesStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
 		return new StepBuilder("importTechniquesStep", jobRepository)
-			.<InputTechnique, InputTechnique> chunk(100, transactionManager)
+			.<ImportTechniqueItem, ImportTechniqueItem> chunk(100, transactionManager)
 			.reader(reader())
 			.processor(new TechniqueProcessor(TechniqueType.SINGLE))
 			.writer(techniqueWriter())
@@ -99,7 +99,7 @@ public class BatchConfiguration {
 	@Bean
 	Step importCompositesStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
 		return new StepBuilder("importCompositesStep", jobRepository)
-			.<InputTechnique, InputTechnique> chunk(200, transactionManager)
+			.<ImportTechniqueItem, ImportTechniqueItem> chunk(200, transactionManager)
 			.reader(reader())
 			.processor(new TechniqueProcessor(TechniqueType.COMPOSITE))
 			.writer(compositeWriter())
