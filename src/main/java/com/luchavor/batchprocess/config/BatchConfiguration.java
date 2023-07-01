@@ -17,9 +17,9 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.web.client.RestTemplate;
 import com.luchavor.batchprocess.listener.ExecutionListener;
-import com.luchavor.batchprocess.model.ZeekEvent;
 import com.luchavor.batchprocess.processor.TechniqueProcessor;
 import com.luchavor.batchprocess.writer.RestApiWriter;
+import com.luchavor.datamodel.event.Event;
 import com.luchavor.datamodel.technique.ImportTechniqueItem;
 import com.luchavor.datamodel.technique.TechniqueType;
 
@@ -36,7 +36,7 @@ public class BatchConfiguration {
 	FlatFileItemReader<ImportTechniqueItem> reader() {
 		return new FlatFileItemReaderBuilder<ImportTechniqueItem>()
 			.name("techniqueReader")
-			.resource(new ClassPathResource("technique-data.csv"))
+			.resource(new ClassPathResource("data/technique-data.csv"))
 			.delimited()
 			.names(new String[]{"model", "subModel", "mitreId", "tactic", "name", "description", "parentMitreId", "treeLevel", "type"})
 			.fieldSetMapper(new BeanWrapperFieldSetMapper<ImportTechniqueItem>() {{ setTargetType(ImportTechniqueItem.class); }})
@@ -45,14 +45,14 @@ public class BatchConfiguration {
 	}
 	
 	@Bean
-	FlatFileItemReader<ZeekEvent> zeekLogReader() {
-		return new FlatFileItemReaderBuilder<ZeekEvent>()
+	FlatFileItemReader<Event> zeekLogReader() {
+		return new FlatFileItemReaderBuilder<Event>()
 			.name("zeekEventReader")
 			.resource(new ClassPathResource("conn.log"))
 			.lineTokenizer(new DelimitedLineTokenizer(DelimitedLineTokenizer.DELIMITER_TAB) {{
                 setNames(new String[]{"timestamp", "uniqueId"});
             }})
-			.fieldSetMapper(new BeanWrapperFieldSetMapper<ZeekEvent>() {{ setTargetType(ZeekEvent.class); }})
+			.fieldSetMapper(new BeanWrapperFieldSetMapper<Event>() {{ setTargetType(Event.class); }})
 			.linesToSkip(1) // skip top line which has headers
 			.build();
 	}
@@ -68,8 +68,8 @@ public class BatchConfiguration {
 	}
 	
 	@Bean
-	RestApiWriter<ZeekEvent> zeekEventWriter() {
-		return new RestApiWriter<ZeekEvent>(TechniqueType.COMPOSITE);
+	RestApiWriter<Event> zeekEventWriter() {
+		return new RestApiWriter<Event>(TechniqueType.COMPOSITE);
 	}
 	// end::readerwriterprocessor[]
 

@@ -1,0 +1,2 @@
+Timestamp,UID,Originator IP,Originator Port,Responder IP,Responder Port,Protocol,Service,Duration,Originator Payload Bytes,Responder Payload Bytes,Connection State,Local Origination Flag,Local Reponse Flag,Missed Bytes,State History,Originator Packets,Originator Total Bytes,Responder Packets,Responder Total Bytes,Parent Tunnel UID,VLAN,Inner VLAN,Originator MAC Address,Responder MAC Address
+1688180034,ChotX932QgJFTfQAFh,172.23.250.132,8,8.8.8.8,0,icmp,-,7.035834,448,448,OTH,T,F,0,-,8,672,8,672,-,-,-,00:15:5d:6d:43:4a,00:15:5d:6e:11:3b
