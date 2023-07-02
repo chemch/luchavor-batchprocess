@@ -1,4 +1,4 @@
-package com.luchavor.batchprocess.config;
+package com.luchavor.batchprocess.config.batch;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.web.client.RestTemplate;
-import com.luchavor.batchprocess.listener.ExecutionListener;
+import com.luchavor.batchprocess.listener.TechniqueImportExecutionListener;
 import com.luchavor.batchprocess.processor.TechniqueProcessor;
 import com.luchavor.batchprocess.writer.RestApiWriter;
 import com.luchavor.datamodel.event.Event;
@@ -24,19 +24,14 @@ import com.luchavor.datamodel.technique.ImportTechniqueItem;
 import com.luchavor.datamodel.technique.TechniqueType;
 
 @Configuration
-public class BatchConfiguration {
-	
-	@Bean
-	RestTemplate restTemplate(RestTemplateBuilder builder) {
-		return builder.build();
-	}
+public class TechniqueImportConfig {
 
-	// tag::readerwriterprocessor[]
+	// tag::importMitreTechniqueDataJob[]
 	@Bean
 	FlatFileItemReader<ImportTechniqueItem> reader() {
 		return new FlatFileItemReaderBuilder<ImportTechniqueItem>()
 			.name("techniqueReader")
-			.resource(new ClassPathResource("data/technique-data.csv"))
+			.resource(new ClassPathResource("input/technique-data.csv"))
 			.delimited()
 			.names(new String[]{"model", "subModel", "mitreId", "tactic", "name", "description", "parentMitreId", "treeLevel", "type"})
 			.fieldSetMapper(new BeanWrapperFieldSetMapper<ImportTechniqueItem>() {{ setTargetType(ImportTechniqueItem.class); }})
@@ -45,42 +40,23 @@ public class BatchConfiguration {
 	}
 	
 	@Bean
-	FlatFileItemReader<Event> zeekLogReader() {
-		return new FlatFileItemReaderBuilder<Event>()
-			.name("zeekEventReader")
-			.resource(new ClassPathResource("conn.log"))
-			.lineTokenizer(new DelimitedLineTokenizer(DelimitedLineTokenizer.DELIMITER_TAB) {{
-                setNames(new String[]{"timestamp", "uniqueId"});
-            }})
-			.fieldSetMapper(new BeanWrapperFieldSetMapper<Event>() {{ setTargetType(Event.class); }})
-			.linesToSkip(1) // skip top line which has headers
-			.build();
-	}
-	
-	@Bean
-	RestApiWriter<ImportTechniqueItem> techniqueWriter() {
+	RestApiWriter<ImportTechniqueItem> techniqueItemRestApiWriter() {
 		return new RestApiWriter<ImportTechniqueItem>(TechniqueType.SINGLE);
 	}
 	
 	@Bean
-	RestApiWriter<ImportTechniqueItem> compositeWriter() {
+	RestApiWriter<ImportTechniqueItem> techniqueGroupRestApiWriter() {
 		return new RestApiWriter<ImportTechniqueItem>(TechniqueType.COMPOSITE);
 	}
-	
-	@Bean
-	RestApiWriter<Event> zeekEventWriter() {
-		return new RestApiWriter<Event>(TechniqueType.COMPOSITE);
-	}
-	// end::readerwriterprocessor[]
 
-	// tag::importTechniquesJob[]
 	@Bean
-	Job importTechniqueJob(JobRepository jobRepository, ExecutionListener executionListener, Step importTechniquesStep, Step importCompositesStep) {
-		return new JobBuilder("importTechniqueJob", jobRepository)
+	Job importMitreTechniqueData(JobRepository jobRepository, TechniqueImportExecutionListener techniqueImportExecutionListener, Step importTechniquesStep, 
+			Step importTechniqueGroupsStep) {
+		return new JobBuilder("importMitreTechniqueData", jobRepository)
 			.incrementer(new RunIdIncrementer())
-			.listener(executionListener)
+			.listener(techniqueImportExecutionListener)
 			.start(importTechniquesStep)
-			.next(importCompositesStep)
+			.next(importTechniqueGroupsStep)
 			.build();
 	}
 	
@@ -91,39 +67,19 @@ public class BatchConfiguration {
 			.<ImportTechniqueItem, ImportTechniqueItem> chunk(100, transactionManager)
 			.reader(reader())
 			.processor(new TechniqueProcessor(TechniqueType.SINGLE))
-			.writer(techniqueWriter())
+			.writer(techniqueItemRestApiWriter())
 			.build();
 	}
 	
-	// import composite techniques
+	// import composite techniques (technique groups)
 	@Bean
-	Step importCompositesStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
-		return new StepBuilder("importCompositesStep", jobRepository)
+	Step importTechniqueGroupsStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
+		return new StepBuilder("importTechniqueGroupsStep", jobRepository)
 			.<ImportTechniqueItem, ImportTechniqueItem> chunk(200, transactionManager)
 			.reader(reader())
 			.processor(new TechniqueProcessor(TechniqueType.COMPOSITE))
-			.writer(compositeWriter())
+			.writer(techniqueGroupRestApiWriter())
 			.build();
 	}
-	// end::importTechniquesJob[]
-	
-	// tag::importZeekEventsJob[]
-//	@Bean
-//	Job importZeekEventsJob(JobRepository jobRepository, Step importConnLogStep) {
-//		return new JobBuilder("importZeekEventsJob", jobRepository)
-//			.incrementer(new RunIdIncrementer())
-//			.start(importConnLogStep)
-//			.build();
-//	}
-//	
-//	// import conn log events
-//	@Bean
-//	Step importConnLogStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
-//		return new StepBuilder("importConnLogStep", jobRepository)
-//			.<ZeekEvent, ZeekEvent> chunk(10, transactionManager)
-//			.reader(zeekLogReader())
-//			.writer(techniqueWriter())
-//			.build();
-//	}
-	// end::importZeekEventsJob[]
+	// end::importMitreTechniqueDataJob[]
 }

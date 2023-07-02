@@ -24,7 +24,7 @@ public class RestApiWriter<Technique> implements ItemWriter<Object> {
 	
 	@Override
 	public void write(Chunk<?> chunk) throws Exception {
-		log.info("RestApiWriter Posting Chunk of Size: " + chunk.size());
+		log.debug("Bulk creating " + chunk.size() + " techniques for type: " + techniqueType.toString());
 		// build url
 		String url =  "http://localhost:7000/batch/%s-technique".formatted(techniqueType.toString().toLowerCase());
 		// post to create 

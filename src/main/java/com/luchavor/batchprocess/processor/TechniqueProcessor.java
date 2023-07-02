@@ -19,10 +19,10 @@ public class TechniqueProcessor implements ItemProcessor<ImportTechniqueItem, Im
 	@Override
 	public ImportTechniqueItem process(final ImportTechniqueItem importTechniqueItem) throws Exception {		
 		// return only techniques that match the given type (simple or composite)
-		if(importTechniqueItem.getType().toUpperCase().equals(techniqueType.toString())) {
+		if(importTechniqueItem.getType().equals(techniqueType)) {
 			return importTechniqueItem;
 		} else {
-			log.debug("Skipping ImportTechniqueItem due to mismatched ImportTechniqueItem Type: " + techniqueType + ": " + importTechniqueItem.getMitreId());
+			log.debug("Skipping technique due mismatched Type: " + techniqueType + ": " + importTechniqueItem.getMitreId());
 			return null;
 		}
 	}

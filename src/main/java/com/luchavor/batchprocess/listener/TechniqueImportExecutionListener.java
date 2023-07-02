@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
-public class ExecutionListener implements JobExecutionListener {
+public class TechniqueImportExecutionListener implements JobExecutionListener {
 	
 	@Autowired
 	RestTemplate restTemplate;
@@ -20,7 +20,7 @@ public class ExecutionListener implements JobExecutionListener {
 	// call api to delete all technique objects in the neo4j db before starting
 	@Override
 	public void beforeJob(JobExecution jobExecution) {
-		log.info("ExecutionListener Removing ImportTechniqueItem Data Before Job");
+		log.info("Clearing Existing Technique Data");
 		// build url
 		String url = "http://localhost:7000/batch/technique".formatted();
 		// delete data using url
@@ -31,7 +31,7 @@ public class ExecutionListener implements JobExecutionListener {
 	@Override
 	public void afterJob(JobExecution jobExecution) {
 		if(jobExecution.getStatus() == BatchStatus.COMPLETED) {
-			log.info("ExecutionListener Calling API to Build ImportTechniqueItem Relations"); 
+			log.info("Triggering Technique Relationship Builder"); 
 			// build url
 			String url =  "http://localhost:7000/relation/technique".formatted();
 			// post to create 

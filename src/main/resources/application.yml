@@ -1,4 +1,5 @@
 spring:
   batch:
     job:
-      name: importTechniqueJob
+      name: importMitreTechniqueData
+# available jobs: importMitreTechniqueData
