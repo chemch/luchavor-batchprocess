@@ -1,4 +1,7 @@
 spring:
+  devtools:
+    livereload:
+      enabled: false
   batch:
     job:
       name: importMitreTechniqueData
