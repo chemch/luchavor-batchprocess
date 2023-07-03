@@ -52,7 +52,6 @@ public class EventImportConfig {
 		return new EventRestApiWriter<ConnectionEvent>(EventType.CONNECTION);
 	}
 	
-	// import conn log events
 	@Bean
 	Step importConnectionEventsStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
 		return new StepBuilder("importConnectionEventsStep", jobRepository)
