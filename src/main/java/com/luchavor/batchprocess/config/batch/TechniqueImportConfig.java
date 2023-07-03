@@ -9,17 +9,13 @@ import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
-import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
-import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.web.client.RestTemplate;
 import com.luchavor.batchprocess.listener.TechniqueImportExecutionListener;
 import com.luchavor.batchprocess.processor.TechniqueProcessor;
-import com.luchavor.batchprocess.writer.RestApiWriter;
-import com.luchavor.datamodel.event.Event;
+import com.luchavor.batchprocess.writer.TechniqueRestApiWriter;
 import com.luchavor.datamodel.technique.ImportTechniqueItem;
 import com.luchavor.datamodel.technique.TechniqueType;
 
@@ -28,7 +24,7 @@ public class TechniqueImportConfig {
 
 	// tag::importMitreTechniqueDataJob[]
 	@Bean
-	FlatFileItemReader<ImportTechniqueItem> reader() {
+	FlatFileItemReader<ImportTechniqueItem> techniqueItemReader() {
 		return new FlatFileItemReaderBuilder<ImportTechniqueItem>()
 			.name("techniqueReader")
 			.resource(new ClassPathResource("input/technique-data.csv"))
@@ -40,13 +36,13 @@ public class TechniqueImportConfig {
 	}
 	
 	@Bean
-	RestApiWriter<ImportTechniqueItem> techniqueItemRestApiWriter() {
-		return new RestApiWriter<ImportTechniqueItem>(TechniqueType.SINGLE);
+	TechniqueRestApiWriter<ImportTechniqueItem> techniqueItemRestApiWriter() {
+		return new TechniqueRestApiWriter<ImportTechniqueItem>(TechniqueType.SINGLE);
 	}
 	
 	@Bean
-	RestApiWriter<ImportTechniqueItem> techniqueGroupRestApiWriter() {
-		return new RestApiWriter<ImportTechniqueItem>(TechniqueType.COMPOSITE);
+	TechniqueRestApiWriter<ImportTechniqueItem> techniqueGroupRestApiWriter() {
+		return new TechniqueRestApiWriter<ImportTechniqueItem>(TechniqueType.COMPOSITE);
 	}
 
 	@Bean
@@ -64,8 +60,8 @@ public class TechniqueImportConfig {
 	@Bean
 	Step importTechniquesStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
 		return new StepBuilder("importTechniquesStep", jobRepository)
-			.<ImportTechniqueItem, ImportTechniqueItem> chunk(100, transactionManager)
-			.reader(reader())
+			.<ImportTechniqueItem, ImportTechniqueItem> chunk(200, transactionManager)
+			.reader(techniqueItemReader())
 			.processor(new TechniqueProcessor(TechniqueType.SINGLE))
 			.writer(techniqueItemRestApiWriter())
 			.build();
@@ -76,7 +72,7 @@ public class TechniqueImportConfig {
 	Step importTechniqueGroupsStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
 		return new StepBuilder("importTechniqueGroupsStep", jobRepository)
 			.<ImportTechniqueItem, ImportTechniqueItem> chunk(200, transactionManager)
-			.reader(reader())
+			.reader(techniqueItemReader())
 			.processor(new TechniqueProcessor(TechniqueType.COMPOSITE))
 			.writer(techniqueGroupRestApiWriter())
 			.build();

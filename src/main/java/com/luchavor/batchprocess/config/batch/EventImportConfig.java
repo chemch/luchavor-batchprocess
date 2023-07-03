@@ -10,62 +10,56 @@ import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
-import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.web.client.RestTemplate;
-import com.luchavor.batchprocess.listener.TechniqueImportExecutionListener;
-import com.luchavor.batchprocess.processor.TechniqueProcessor;
-import com.luchavor.batchprocess.writer.RestApiWriter;
-import com.luchavor.datamodel.event.Event;
-import com.luchavor.datamodel.technique.ImportTechniqueItem;
-import com.luchavor.datamodel.technique.TechniqueType;
+import com.luchavor.batchprocess.processor.EventProcessor;
+import com.luchavor.batchprocess.writer.EventRestApiWriter;
+import com.luchavor.datamodel.event.EventType;
+import com.luchavor.datamodel.event.connection.Connection;
+import com.luchavor.datamodel.event.connection.ConnectionEvent;
+import com.luchavor.datamodel.event.connection.ConnectionEventImport;
 
 @Configuration
 public class EventImportConfig {
+
+	@Bean
+	FlatFileItemReader<ConnectionEventImport> eventReader() {
+		return new FlatFileItemReaderBuilder<ConnectionEventImport>()
+			.name("eventReader")
+			.resource(new ClassPathResource("input/conn.log"))
+			.lineTokenizer(new DelimitedLineTokenizer(DelimitedLineTokenizer.DELIMITER_TAB) {{
+                setNames(new String[]{"timestamp", "uid", "originatorIp", "originatorPort", "responderIp", "responderPort", "protocol", 
+                		"service", "duration", "originatorPayloadByteCount", "responderPayloadByteCount", "connectionState", "localOriginatorFlag", "localResponderFlag",
+                		"missedByteCount", "stateHistory", "originatorPacketCount", "originatorTotalByteCount", "responderPacketCount", "responderTotalByteCount", 
+                		"parentTunnelUid", "vlan", "innerVlan", "originatorMacAddress", "responderMacAddress"});
+            }})
+			.fieldSetMapper(new BeanWrapperFieldSetMapper<ConnectionEventImport>() {{ setTargetType(ConnectionEventImport.class); }})
+			.build();
+	}
+
+	@Bean
+	Job importZeekEventData(JobRepository jobRepository, Step importConnectionEventsStep) {
+		return new JobBuilder("importZeekEventData", jobRepository)
+			.incrementer(new RunIdIncrementer())
+			.start(importConnectionEventsStep)
+			.build();
+	}
 	
-//	@Bean
-//	RestTemplate restTemplate(RestTemplateBuilder builder) {
-//		return builder.build();
-//	}
-//	
-	// tag::importZeekEventsJob[]
-//	@Bean
-//	FlatFileItemReader<Event> zeekLogReader() {
-//		return new FlatFileItemReaderBuilder<Event>()
-//			.name("zeekEventReader")
-//			.resource(new ClassPathResource("conn.log"))
-//			.lineTokenizer(new DelimitedLineTokenizer(DelimitedLineTokenizer.DELIMITER_TAB) {{
-//                setNames(new String[]{"timestamp", "uniqueId"});
-//            }})
-//			.fieldSetMapper(new BeanWrapperFieldSetMapper<Event>() {{ setTargetType(Event.class); }})
-//			.linesToSkip(1) // skip top line which has headers
-//			.build();
-//	}
-//	
-//	@Bean
-//	RestApiWriter<Event> zeekEventWriter() {
-//		return new RestApiWriter<Event>(TechniqueType.COMPOSITE);
-//	}
-//	
-//	@Bean
-//	Job importZeekEventsJob(JobRepository jobRepository, Step importConnLogStep) {
-//		return new JobBuilder("importZeekEventsJob", jobRepository)
-//			.incrementer(new RunIdIncrementer())
-//			.start(importConnLogStep)
-//			.build();
-//	}
-//	
+	@Bean
+	EventRestApiWriter<ConnectionEvent> eventRestApiWriter() {
+		return new EventRestApiWriter<ConnectionEvent>(EventType.CONNECTION);
+	}
+	
 	// import conn log events
-//	@Bean
-//	Step importConnLogStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
-//		return new StepBuilder("importConnLogStep", jobRepository)
-//			.<Event, Event> chunk(10, transactionManager)
-//			.reader(zeekLogReader())
-//			.writer(techniqueWriter())
-//			.build();
-//	}
-	// end::importZeekEventsJob[]
+	@Bean
+	Step importConnectionEventsStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
+		return new StepBuilder("importConnectionEventsStep", jobRepository)
+			.<ConnectionEventImport, Connection> chunk(1, transactionManager)
+			.reader(eventReader())
+			.processor(new EventProcessor(EventType.CONNECTION))
+			.writer(eventRestApiWriter())
+			.build();
+	}
 }
