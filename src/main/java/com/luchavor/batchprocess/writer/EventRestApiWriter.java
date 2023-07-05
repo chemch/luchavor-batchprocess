@@ -11,7 +11,7 @@ import com.luchavor.datamodel.event.EventType;
 import lombok.Data;
 
 @Data
-public class EventRestApiWriter<Connection> implements ItemWriter<Object> {
+public class EventRestApiWriter<T> implements ItemWriter<Object> {
 	
 	@Autowired
 	RestTemplate restTemplate;
@@ -22,9 +22,9 @@ public class EventRestApiWriter<Connection> implements ItemWriter<Object> {
 	
 	@Override
 	public void write(Chunk<?> chunk) throws Exception {
-		log.debug("Bulk creating " + chunk.size() + " connection events");
+		log.debug("Bulk creating " + chunk.size() + " events");
 		// build url
-		String url =  "http://localhost:7000/batch/connection";
+		String url =  "http://localhost:7000/batch/" + eventType.toString().toLowerCase();
 		// post to create 
 		ResponseEntity<String> response = restTemplate.postForEntity(url, chunk.getItems(), String.class);
 		// check status code (should be 2xx)

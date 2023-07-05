@@ -4,5 +4,5 @@ spring:
       enabled: false
   batch:
     job:
-      name: importZeekEventData
-# available jobs: importMitreTechniqueData, importZeekEventData
+      name: importEventData
+# available jobs: importMitreTechniqueData, importEventData

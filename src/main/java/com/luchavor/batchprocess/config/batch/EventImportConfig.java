@@ -14,51 +14,118 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.transaction.PlatformTransactionManager;
-import com.luchavor.batchprocess.processor.EventProcessor;
+import com.luchavor.batchprocess.processor.ConnectionProcessor;
+import com.luchavor.batchprocess.processor.DnsEventProcessor;
 import com.luchavor.batchprocess.writer.EventRestApiWriter;
 import com.luchavor.datamodel.event.EventType;
 import com.luchavor.datamodel.event.connection.Connection;
-import com.luchavor.datamodel.event.connection.ConnectionEvent;
-import com.luchavor.datamodel.event.connection.ConnectionEventImport;
+import com.luchavor.datamodel.event.connection.ConnectionImport;
+import com.luchavor.datamodel.event.dns.Dns;
+import com.luchavor.datamodel.event.dns.DnsEventImport;
 
 @Configuration
 public class EventImportConfig {
 
 	@Bean
-	FlatFileItemReader<ConnectionEventImport> eventReader() {
-		return new FlatFileItemReaderBuilder<ConnectionEventImport>()
-			.name("eventReader")
+	FlatFileItemReader<ConnectionImport> connectionReader() {
+		return new FlatFileItemReaderBuilder<ConnectionImport>()
+			.name("connectionEventReader")
 			.resource(new ClassPathResource("input/conn.log"))
 			.lineTokenizer(new DelimitedLineTokenizer(DelimitedLineTokenizer.DELIMITER_TAB) {{
                 setNames(new String[]{"timestamp", "uid", "originatorIp", "originatorPort", "responderIp", "responderPort", "protocol", 
                 		"service", "duration", "originatorPayloadByteCount", "responderPayloadByteCount", "connectionState", "localOriginatorFlag", "localResponderFlag",
                 		"missedByteCount", "stateHistory", "originatorPacketCount", "originatorTotalByteCount", "responderPacketCount", "responderTotalByteCount", 
-                		"parentTunnelUid", "vlan", "innerVlan", "originatorMacAddress", "responderMacAddress"});
+                		"parentTunnelUid", "vlan", "innerVlan", "originatorMacAddress", "responderMacAddress", "speculativeService"});
             }})
-			.fieldSetMapper(new BeanWrapperFieldSetMapper<ConnectionEventImport>() {{ setTargetType(ConnectionEventImport.class); }})
+			.fieldSetMapper(new BeanWrapperFieldSetMapper<ConnectionImport>() {{ setTargetType(ConnectionImport.class); }})
+			.build();
+	}
+	
+	@Bean
+	FlatFileItemReader<DnsEventImport> dnsEventReader() {
+		return new FlatFileItemReaderBuilder<DnsEventImport>()
+			.name("dnsEventReader")
+			.resource(new ClassPathResource("input/dns.log"))
+			.lineTokenizer(new DelimitedLineTokenizer(DelimitedLineTokenizer.DELIMITER_TAB) {{
+                setNames(new String[]{ 
+                		"timestamp",
+                		"uid",
+                		"originatorIp",
+                		"originatorPort",
+                		"responderIp",
+                		"responderPort",
+                		"protocol",
+                		"transactionId",
+                		"roundTripTime",
+                		"query",
+                		"qclass",
+                		"qclassName",
+                		"qtype",
+                		"qtypeName",
+                		"rcode",
+                		"rcodeName",
+                		"authoritativeAnswerFlag",
+                		"truncationFlag",
+                		"recursionDesiredFlag",
+                		"recursionAvailableFlag",
+                		"dnssecFlag",
+                		"answers",
+                		"ttls",
+                		"rejectedFlag",
+                		"authoritativeResponses",
+                		"additionalResponses",
+                		"originalQuery" });
+            }})
+			.fieldSetMapper(new BeanWrapperFieldSetMapper<DnsEventImport>() {{ setTargetType(DnsEventImport.class); }})
 			.build();
 	}
 
 	@Bean
-	Job importZeekEventData(JobRepository jobRepository, Step importConnectionEventsStep) {
-		return new JobBuilder("importZeekEventData", jobRepository)
+	Job importEventData(JobRepository jobRepository, Step importConnectionsStep, Step importDnsEventsStep) {
+		return new JobBuilder("importEventData", jobRepository)
 			.incrementer(new RunIdIncrementer())
-			.start(importConnectionEventsStep)
+			.start(importConnectionsStep)
+			.next(importDnsEventsStep)
 			.build();
 	}
 	
 	@Bean
-	EventRestApiWriter<ConnectionEvent> eventRestApiWriter() {
-		return new EventRestApiWriter<ConnectionEvent>(EventType.CONNECTION);
+	EventRestApiWriter<Connection> connectionWriter() {
+		return new EventRestApiWriter<Connection>(EventType.CONNECTION);
 	}
 	
 	@Bean
-	Step importConnectionEventsStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
-		return new StepBuilder("importConnectionEventsStep", jobRepository)
-			.<ConnectionEventImport, Connection> chunk(1, transactionManager)
-			.reader(eventReader())
-			.processor(new EventProcessor(EventType.CONNECTION))
-			.writer(eventRestApiWriter())
+	EventRestApiWriter<Dns> dnsEventWriter() {
+		return new EventRestApiWriter<Dns>(EventType.DNS);
+	}
+	
+	@Bean
+	ConnectionProcessor connectionProcessor() {
+		return new ConnectionProcessor();
+	}
+	
+	@Bean
+	DnsEventProcessor dnsEventProcessor() {
+		return new DnsEventProcessor();
+	}
+	
+	@Bean
+	Step importConnectionsStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
+		return new StepBuilder("importConnectionsStep", jobRepository)
+			.<ConnectionImport, Connection> chunk(10, transactionManager)
+			.reader(connectionReader())
+			.processor(connectionProcessor())
+			.writer(connectionWriter())
+			.build();
+	}
+	
+	@Bean
+	Step importDnsEventsStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
+		return new StepBuilder("importDnsEventsStep", jobRepository)
+			.<DnsEventImport, Dns> chunk(10, transactionManager)
+			.reader(dnsEventReader())
+			.processor(dnsEventProcessor())
+			.writer(dnsEventWriter())
 			.build();
 	}
 }
