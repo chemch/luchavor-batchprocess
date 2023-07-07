@@ -4,5 +4,5 @@ spring:
       enabled: false
   batch:
     job:
-      name: importEventData
+      name: importMitreTechniqueData
 # available jobs: importMitreTechniqueData, importEventData
