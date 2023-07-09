@@ -7,26 +7,24 @@ import org.springframework.batch.item.ItemWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
-
-import com.luchavor.datamodel.technique.TechniqueType;
-
+import com.luchavor.batchprocess.model.TechniqueImportType;
 import lombok.Data;
 
 @Data
-public class TechniqueRestApiWriter<Technique> implements ItemWriter<Object> {
+public class TechniqueRestApiWriter<TechniqueImport> implements ItemWriter<Object> {
 	
 	@Autowired
 	RestTemplate restTemplate;
 	
 	private static final Logger log = LoggerFactory.getLogger(TechniqueRestApiWriter.class);
 	
-	private final TechniqueType techniqueType;
+	private final TechniqueImportType techniqueImportType;
 	
 	@Override
 	public void write(Chunk<?> chunk) throws Exception {
-		log.debug("Bulk creating " + chunk.size() + " techniques for type: " + techniqueType.toString());
+		log.debug("Bulk creating " + chunk.size() + " techniques for type: " + techniqueImportType.toString());
 		// build url
-		String url =  "http://localhost:7000/batch/%s-technique".formatted(techniqueType.toString().toLowerCase());
+		String url =  "http://localhost:7000/batch/%s-technique".formatted(techniqueImportType.toString().toLowerCase());
 		// post to create 
 		ResponseEntity<String> response = restTemplate.postForEntity(url, chunk.getItems(), String.class);
 		// check status code (should be 2xx)
