@@ -24,7 +24,7 @@ public class TechniqueRestApiWriter<TechniqueImport> implements ItemWriter<Objec
 	public void write(Chunk<?> chunk) throws Exception {
 		log.debug("Bulk creating " + chunk.size() + " techniques for type: " + techniqueImportType.toString());
 		// build url
-		String url =  "http://localhost:7000/batch/%s-technique".formatted(techniqueImportType.toString().toLowerCase());
+		String url =  "http://localhost:7000/technique/%s".formatted(techniqueImportType.toString().toLowerCase());
 		// post to create 
 		ResponseEntity<String> response = restTemplate.postForEntity(url, chunk.getItems(), String.class);
 		// check status code (should be 2xx)

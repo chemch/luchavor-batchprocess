@@ -22,7 +22,7 @@ public class TechniqueImportExecutionListener implements JobExecutionListener {
 	public void beforeJob(JobExecution jobExecution) {
 		log.info("Clearing Existing Technique Data");
 		// build url
-		String url = "http://localhost:7000/batch/technique".formatted();
+		String url = "http://localhost:7000/technique".formatted();
 		// delete data using url
 		restTemplate.delete(url);		
 	}
@@ -33,7 +33,7 @@ public class TechniqueImportExecutionListener implements JobExecutionListener {
 		if(jobExecution.getStatus() == BatchStatus.COMPLETED) {
 			log.info("Triggering Technique Relationship Builder"); 
 			// build url
-			String url =  "http://localhost:7000/relation/technique".formatted();
+			String url =  "http://localhost:7000/technique/relations".formatted();
 			// post to create 
 			ResponseEntity<String> response = restTemplate.postForEntity(url, null, String.class);
 			// check status code (should be 201)
