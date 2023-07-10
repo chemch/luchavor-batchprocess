@@ -9,9 +9,9 @@ import com.luchavor.batchprocess.model.TechniqueImportType;
 import lombok.Data;
 
 @Data
-public class TechniqueProcessor implements ItemProcessor<TechniqueImport, TechniqueImport> {
+public class TechniqueImportProcessor implements ItemProcessor<TechniqueImport, TechniqueImport> {
 
-	private static final Logger log = LoggerFactory.getLogger(TechniqueProcessor.class);
+	private static final Logger log = LoggerFactory.getLogger(TechniqueImportProcessor.class);
 	
 	private final TechniqueImportType techniqueImportType;
 	

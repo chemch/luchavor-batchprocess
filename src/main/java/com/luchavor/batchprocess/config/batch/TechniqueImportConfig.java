@@ -16,7 +16,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import com.luchavor.batchprocess.listener.TechniqueImportExecutionListener;
 import com.luchavor.batchprocess.model.TechniqueImport;
 import com.luchavor.batchprocess.model.TechniqueImportType;
-import com.luchavor.batchprocess.processor.TechniqueProcessor;
+import com.luchavor.batchprocess.processor.TechniqueImportProcessor;
 import com.luchavor.batchprocess.writer.TechniqueRestApiWriter;
 
 @Configuration
@@ -62,7 +62,7 @@ public class TechniqueImportConfig {
 		return new StepBuilder("importTechniquesStep", jobRepository)
 			.<TechniqueImport, TechniqueImport> chunk(200, transactionManager)
 			.reader(techniqueItemReader())
-			.processor(new TechniqueProcessor(TechniqueImportType.SINGLE))
+			.processor(new TechniqueImportProcessor(TechniqueImportType.SINGLE))
 			.writer(techniqueItemRestApiWriter())
 			.build();
 	}
@@ -73,7 +73,7 @@ public class TechniqueImportConfig {
 		return new StepBuilder("importTechniqueGroupsStep", jobRepository)
 			.<TechniqueImport, TechniqueImport> chunk(200, transactionManager)
 			.reader(techniqueItemReader())
-			.processor(new TechniqueProcessor(TechniqueImportType.COMPOSITE))
+			.processor(new TechniqueImportProcessor(TechniqueImportType.COMPOSITE))
 			.writer(techniqueGroupRestApiWriter())
 			.build();
 	}
