@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TechniqueImport {
-	private TechniqueImportType type;
+public class ImportedTechnique {
+	private ImportedTechniqueType type;
 	private String mitreId; // t code for offensive techniques and d3 id for defensive techniques
 	private String model;
 	private String subModel;

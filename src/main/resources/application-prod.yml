@@ -1,0 +1,4 @@
+neo4j-api-server:
+  port: 7004
+server:
+  port: 8004

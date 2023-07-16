@@ -4,6 +4,7 @@ import org.springframework.batch.core.BatchStatus;
 import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobExecutionListener;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -16,13 +17,16 @@ public class TechniqueImportExecutionListener implements JobExecutionListener {
 	
 	@Autowired
 	RestTemplate restTemplate;
+	
+	@Value("${neo4j-api-server.port}")
+	private Integer apiServerPort;
 
 	// call api to delete all technique objects in the neo4j db before starting
 	@Override
 	public void beforeJob(JobExecution jobExecution) {
 		log.info("Clearing Existing Technique Data");
 		// build url
-		String url = "http://localhost:7000/technique".formatted();
+		String url = "http://localhost:" + apiServerPort.toString() + "/technique";
 		// delete data using url
 		restTemplate.delete(url);		
 	}
@@ -33,7 +37,7 @@ public class TechniqueImportExecutionListener implements JobExecutionListener {
 		if(jobExecution.getStatus() == BatchStatus.COMPLETED) {
 			log.info("Triggering Technique Relationship Builder"); 
 			// build url
-			String url =  "http://localhost:7000/technique/relations".formatted();
+			String url =  "http://localhost:" + apiServerPort.toString() + "/technique/relations";
 			// post to create 
 			ResponseEntity<String> response = restTemplate.postForEntity(url, null, String.class);
 			// check status code (should be 201)

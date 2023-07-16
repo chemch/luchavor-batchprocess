@@ -1,5 +1,5 @@
 package com.luchavor.batchprocess.model;
 
-public enum TechniqueImportType {
+public enum ImportedTechniqueType {
 	SINGLE, COMPOSITE
 }

@@ -1,8 +1,12 @@
 spring:
+  profiles:
+    active: local, dev, qa, prod, test
+  main: 
+    banner-mode: off
   devtools:
     livereload:
       enabled: false
   batch:
     job:
       name: importMitreTechniqueData
-# available jobs: importMitreTechniqueData, importEventData
+      # available job names: importMitreTechniqueData, etc  

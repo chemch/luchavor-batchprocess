@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "neo4j-api-server.port",
+  "type": "java.lang.String",
+  "description": "Port that Neo4j API Web Server is running on."
+}]}
