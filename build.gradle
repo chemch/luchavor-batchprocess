@@ -4,9 +4,9 @@ plugins {
 	id 'java'
 }
 
-group = 'com.example'
+group = 'com.luchavor'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
+sourceCompatibility = '20'
 
 repositories {
 	mavenCentral()
